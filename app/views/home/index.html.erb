@@ -1,0 +1,308 @@
+<div class="small-container center-block margin-top bg-nav">
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary m-3 " data-toggle="modal" data-target="#exampleModal">
+        Ver Tasas de <%=current_user.country%>
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-success" id="exampleModalLabel">Tasas de <%=current_user.country%> para envios a:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card border-success mb-3 m-auto" style="max-width: 36rem;">
+
+                        <div class="card-header text-success text-center">
+                            <% @rates.each do |rate| %>
+
+                            <%if current_user.country === rate.country%>
+                            <!-- Esto -->
+
+                            <%@rate = rate%>
+                            <%= render "partials/tasas", collection: @rate %>
+
+                            <%end%>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="text-success mt-5 text-center">Calcular Envio</h4>
+    <div class="row">
+        <div class="col-6 field text-center">
+            <label class="mt-2" for="pais">Enviar a: </label>
+
+        </div>
+        <div class="col-6">
+            <div class="px-2">
+                <select class="custom-select" id="pais" onchange=''>
+                    <option selected disabled value="">Elige un Pais...</option>
+                    <%if current_user.country != "Argentina"%><option value="Argentina">Argentina</option><%end%>
+                    <%if current_user.country != "Brasil"%><option value="Brasil">Brasil</option><%end%>
+                    <%if current_user.country != "Chile"%><option value="Chile">Chile</option><%end%>
+                    <%if current_user.country != "Ecuador"%><option value="Ecuador">Ecuador</option><%end%>
+                    <%if current_user.country != "España"%><option value="España">España</option><%end%>
+                    <%if current_user.country != "Panama"%><option value="Panama">Panama</option><%end%>
+                    <%if current_user.country != "Peru"%><option value="Peru">Peru</option><%end%>
+                    <%if current_user.country != "Portugal"%><option value="Portugal">Portugal</option><%end%>
+                    <%if current_user.country != "USA"%><option value="USA">USA</option><%end%>
+                    <%if current_user.country != "Venezuela"%><option value="Venezuela">Venezuela</option><%end%>
+
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-tp">
+        <div class="row field m-auto text-center">
+            <div class="col-6">
+                <label>Monto a enviar</label>
+                <input type="text" id="montoEnvio" value="">
+            </div>
+            <div class="col-6">
+                <label>Monto a recibir</label>
+                <input type="text" id="montoRecibir" step="0.001" value="" disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="field margin-tp text-center">
+            <button class="btn btn-success mb-3" id="botonC">Calcular</button>
+        <button class="btn btn-danger mb-3 ml-3" id="boton">Borrar</button>
+    </div>
+</div>
+
+<script>
+    var pais = document.querySelector('#pais'),
+        boton = document.querySelector('#boton'),
+        botonC = document.querySelector('#botonC'),
+        montoEnvio = document.querySelector('#montoEnvio'),
+        montoRecibir = document.querySelector('#montoRecibir');
+
+    //Funciones
+    var setMontoToRecibir = function () {
+        <% @rates.each do |rate| %>
+
+        <%if current_user.country === rate.country%>
+        var paisV = pais.value
+        switch (paisV) {
+            
+            <%if current_user.country != "Argentina"%>
+            case "Argentina":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_argentina%>;
+                }else{
+                    var  tasa = <%=rate.rate_argentina_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "Brasil"%>
+            case "Brasil":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_brasil%>;
+                }else{
+                    var  tasa = <%=rate.rate_brasil_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "Chile"%>
+            case "Chile":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_chile%>;
+                }else{
+                    var  tasa = <%=rate.rate_chile_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "Ecuador"%>
+            case "Ecuador":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_ecuador%>;
+                }else{
+                    var  tasa = <%=rate.rate_ecuador_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "España"%>
+            case "España":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_españa%>;
+                }else{
+                    var  tasa = <%=rate.rate_españa_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "Panama"%>
+            case "Panama":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_panama%>;
+                }else{
+                    var  tasa = <%=rate.rate_panama_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "Peru"%>
+            case "Peru":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_peru%>;
+                }else{
+                    var  tasa = <%=rate.rate_peru_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "Portugal"%>
+            case "Portugal":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_portugal%>;
+                }else{
+                    var  tasa = <%=rate.rate_portugal_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "USA"%>
+            case "USA":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_usa%>;
+                }else{
+                    var  tasa = <%=rate.rate_usa_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            <%if current_user.country != "Venezuela"%>
+            case "Venezuela":
+                var montoE = montoEnvio.value;
+                if(montoE < <%=rate.monto_oferta%>){
+                    var  tasa = <%=rate.rate_venezuela%>;
+                }else{
+                    var  tasa = <%=rate.rate_venezuela_min%>;
+                }
+                
+                var resultado = montoE * tasa;
+
+                montoRecibir.value = resultado.toFixed(3);
+                if (montoRecibir.value == "NaN"){
+                    montoRecibir.value = "Monto a enviar invalido";
+                }
+                break;
+            <%end%>
+
+            default:
+                
+                montoRecibir.value = "0";                
+                break;
+        }
+         <%end%>
+        <%end%>
+    }; 
+
+    pais.addEventListener('change', setMontoToRecibir);
+
+    montoEnvio.addEventListener("focus", function () {
+         montoRecibir.value = "";
+    });
+
+    botonC.addEventListener('click', setMontoToRecibir);
+
+    boton.addEventListener('click', function() {
+        pais.value = "";
+        montoEnvio.value = "";
+        montoRecibir.value = "";
+
+    });
+
+    
+</script>

@@ -1,0 +1,69 @@
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+
+@import '~bootstrap/scss/bootstrap';
+
+body{
+    background: #12c2e9;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+* {
+    font-family: 'Roboto', sans-serif;
+}
+li {
+    list-style: none;
+}
+.bg-nav{
+    background: rgba(236, 240, 241,0.7);
+    border-radius: 10px;
+}
+.margin-tp{
+    margin-top: 1.5em;
+}
+.small-container{
+    width: 100%;
+    max-width: 650px;
+}
+.center-block{
+    margin: auto;
+}
+.margin-top{
+    margin-top: 170px;
+}
+.field{
+    @extend .margin-tp;
+    label{
+        @extend .text-uppercase;
+        @extend .text-info;
+        @extend .font-weight-bold;
+    }
+    &:first-of-type{
+        margin-top:0;
+    }
+    input{
+        @extend .form-control;
+        @extend .bg-light;
+    }
+    input[type='checkbox']{
+        display: inline-block;
+        width: auto;
+        vertical-align: middle;
+        margin-right: 0.5em;
+    }
+}
+input[type=checkbox]
+{
+    transform: scale(1.5);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+#montoRecibir{
+    background-color: #bbbfc0 !important;
+}

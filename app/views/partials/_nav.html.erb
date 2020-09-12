@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-md bg-light fixed-top">
+    <div class="container-fluid">
+        <%if user_signed_in?%>
+        <span class="navbar-brand text-primary">
+            <%if current_user.gender === "Femenino" %>Bienvenida<%else%>Bienvenido<%end%>
+            <%= current_user.name%></span>
+        <%end%>
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#firstNavBar">
+            <span><i class="fas fa-bars"></i></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="firstNavBar">
+            <ul class="navbar-nav ml-auto">
+                <% if user_signed_in?%>
+
+                <li class="nav-item">
+                    <%= link_to "Enviar Dinero", destroy_user_session_path, method: :delete, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Calcular Envio", user_root_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Cuentas Registradas", banks_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Transferencias Realizadas", destroy_user_session_path, method: :delete, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Estatus de mis transacciones", destroy_user_session_path, method: :delete, class:"nav-link" %>
+                </li>
+
+                <% if current_user.is_admin?%>
+                <li class="nav-item">
+                    <%= link_to "Tasas", rates_path, class:"nav-link" %>
+                </li>
+                <%end%>
+            
+                <li class="nav-item">
+                    <%= link_to "Perfil", edit_user_registration_path, class:"nav-link" %>
+                </li>
+                <% else %>
+                <li class="nav-item">
+                    <%= link_to "Iniciar sesion", new_user_session_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Registro", new_user_registration_path, class:"nav-link" %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,67 @@
+<div class="mt-5">
+<%= form_with(model: bank, local: true) do |form| %>
+  <% if bank.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bank.errors.count, "error") %> prohibited this bank from being saved:</h2>
+
+      <ul>
+        <% bank.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, "Nombre Completo" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :identidy, "Identidad" %>
+    <%= form.text_field :identidy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country, "Pais" %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state, "Estado" %>
+    <%= form.text_field :state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bank, "Nombre del Banco" %>
+    <%= form.text_field :bank %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_account, "Numero de Cuenta" %>
+    <%= form.text_field :number_account %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_account, "Tipo de Cuenta" %>
+    <%= form.text_field :type_account %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cod_bank, "Codigo del Banco" %>
+    <%= form.text_field :cod_bank %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone, "Nro de telefono (Registre el asociado a su pago movil)" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Guardar", class:"btn btn-primary mt-3" %>
+     <%= link_to 'Volver', banks_path, class:"btn btn-primary mt-3 text-right " %>
+  </div>
+   
+
+<% end %>
+</div>

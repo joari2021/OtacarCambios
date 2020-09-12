@@ -1,0 +1,187 @@
+<div class="small-container center-block bg-nav">
+    <div class="margin-top pt-4 px-5 pb-2">
+        <h2 class="text-uppercase text-info font-weight-bold">Editar Perfil</h2>
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <%number = current_user.id.to_s.length %>
+        <%num_vacio = "000000000"%>
+        <%num_vacio = num_vacio[number...]%>
+        <%num_comp = num_vacio << current_user.id.to_s%>
+
+        <div class="field">
+            <label for="validationDefault16">N° Usuario</label>
+            <input type="text" class="form-control" id="validationDefault16" value="<%=num_comp%>" readonly>
+        </div>
+
+        <div class="form-row field">
+            <div class="col-md-6 mb-3">
+                <label for="validationDefault01">Nombres</label>
+                <input type="text" class="form-control" id="validationDefault01" name="user[name]" value="<%=current_user.name%>" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="validationDefault02">Apellidos</label>
+                <input type="text" class="form-control" id="validationDefault02" name="user[last_name]" value="<%=current_user.last_name%>" required>
+            </div>
+        </div>
+        <div class="field">
+            <label for="validationDefault03">Documento Identidad (CPF, CI, DOC)</label>
+            <input type="text" class="form-control" id="validationDefault03" name="user[document]" value="<%=current_user.document%>" required>
+        </div>
+
+
+        <div class="form-row field">
+
+            <div class="col-md-8 mb-3">
+                <label for="validationDefault06">Telefono</label>
+                <input type="text" class="form-control" id="validationDefault06" name="user[phone]" value="<%=current_user.phone%>" required>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault05">Sexo</label>
+                <select class="custom-select" id="validationDefault05" name="user[gender]" required>
+                    <option selected disabled value="">Elegir...</option>
+                    <option value="Femenino" <%if current_user.gender === "Femenino"%>selected<%end%>>Femenino</option>
+                    <option value="Masculino" <%if current_user.gender === "Masculino"%>selected<%end%>>Masculino</option>
+
+                </select>
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Fecha de nacimiento</label>
+        </div>
+
+        <div class="form-row field">
+
+            <div class="col-md-4 mb-3">
+                <label for="validationDefaultDia">Dia</label>
+                <input type="number" class="form-control" id="validationDefaultDia" name="user[day]" value="<%=current_user.day%>" required>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="validationDefaultMes">Mes</label>
+                <select class="custom-select" id="validationDefaultMes" name="user[month]" required>
+                    <option selected disabled value="">Elegir...</option>
+                    <option value="Enero" <%if current_user.month === "Enero"%>selected<%end%>>Enero</option>
+                    <option value="Febrero" <%if current_user.month === "Febrero"%>selected<%end%>>Febrero</option>
+                    <option value="Marzo" <%if current_user.month === "Marzo"%>selected<%end%>>Marzo</option>
+                    <option value="Abril" <%if current_user.month === "Abril"%>selected<%end%>>Abril</option>
+                    <option value="Mayo" <%if current_user.month === "Mayo"%>selected<%end%>>Mayo</option>
+                    <option value="Junio" <%if current_user.month === "Junio"%>selected<%end%>>Junio</option>
+                    <option value="Julio" <%if current_user.month === "Julio"%>selected<%end%>>Julio</option>
+                    <option value="Agosto" <%if current_user.month === "Agosto"%>selected<%end%>>Agosto</option>
+                    <option value="Septiembre" <%if current_user.month === "Septiembre"%>selected<%end%>>Septiembre</option>
+                    <option value="Octubre" <%if current_user.month === "Octubre"%>selected<%end%>>Octubre</option>
+                    <option value="Noviembre" <%if current_user.month === "Noviembre"%>selected<%end%>>Noviembre</option>
+                    <option value="Diciembre" <%if current_user.month === "Diciembre"%>selected<%end%>>Diciembre</option>
+                </select>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="validationDefaultAño">Año</label>
+                <input type="number" class="form-control" id="validationDefaultAño" name="user[year]" value="<%=current_user.year%>" required>
+            </div>
+        </div>
+
+        <div class="form-row field">
+
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault07">Pais</label>
+                <select class="custom-select" id="validationDefault07" name="user[country]" required>
+                    <option selected disabled value="">Elegir...</option>
+                    <option value="Brasil">Brasil</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Ecuador">Ecuador</option>
+                    <option value="España">España</option>
+                    <option value="Panama">Panama</option>
+                    <option value="Peru">Peru</option>
+                    <option value="Portugal">Portugal</option>
+                    <option value="USA">USA</option>
+                    <option value="Venezuela">Venezuela</option>
+
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault08">Estado</label>
+                <input type="text" class="form-control" id="validationDefault08" name="user[state]" value="<%=current_user.state%>" required>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault09">Ciudad</label>
+                <input type="text" class="form-control" id="validationDefault09" name="user[city]" value="<%=current_user.city%>" required>
+            </div>
+        </div>
+        <div class="field">
+            <label for="validationDefault10">Dirección</label>
+            <input type="text" class="form-control" id="validationDefault10" name="user[address]" value="<%=current_user.address%>" required>
+        </div>
+
+        <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field">
+            <%= f.label :password %> <i>(Deja el campo en blanco si no deseas cambiar tu contraseña)</i><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+            <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> caracteres minimos</em>
+            <% end %>
+        </div>
+
+        <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+
+
+        <% @usuarios.each do |usuario|%>
+
+        <%number = usuario.id.to_s.length %>
+        <%num_vacio = "000000000"%>
+        <%num_vacio = num_vacio[number...]%>
+        <%num_comp = num_vacio << usuario.id.to_s%>
+
+        <%if num_comp === current_user.num_user%>
+        <%@referencia = usuario.name << " " << usuario.last_name%>
+        <%@coincidencia = true%>
+        <%end%>
+
+        <% end %>
+
+        <%if @coincidencia === true%>
+        <div class="field">
+            <label for="validationDefault15">Referido por</label>
+            <input type="text" class="form-control" id="validationDefault15" value="<%=@referencia%>" readonly>
+        </div>
+        <%else%>
+        <div class="field">
+            <input type="text" class="form-control" value="Sin Referencia" readonly>
+        </div>
+        <%end%>
+
+        <div class="field">
+            <%= f.label :current_password %> <i>(Debes ingresar tu contraseña actual para confirmar los cambios)</i><br />
+            <%= f.password_field :current_password, autocomplete: "current-password" %>
+        </div>
+
+        <div class="actions">
+            <%= f.submit "Actualizar", class:"btn btn-primary mt-2" %>
+        </div>
+        <% end %>
+
+        <h3>Cancelar Cuenta</h3>
+
+        <p>Infeliz? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estas segur@ de eliminar esta cuenta, esta opcion no es reversible" }, method: :delete, class:"btn btn-danger" %></p>
+
+        <%= link_to "Volver", :back, class:"btn btn-primary" %>
+    </div>
+</div>
