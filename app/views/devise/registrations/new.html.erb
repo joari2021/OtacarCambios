@@ -1,54 +1,78 @@
-<div class="container small-container center-block bg-nav">
-    <div class="margin-top pt-4 px-5 pb-2">
-        <h2 class="text-uppercase text-info font-weight-bold">crear cuenta</h2>
+<div class="container bg-nav">
+    <div class="margin-top pt-3 px-3 pb-2">
+        <h2 class="text-uppercase text-success font-weight-bold mb-5">crear cuenta</h2>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class:"was-validated") do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="form-row field">
-            <div class="col-md-6 mb-3">
-                <label for="validationDefault01">Nombres</label>
-                <input type="text" class="form-control" id="validationDefault01" name="user[name]" required>
+            <div class="col-6 col-md-3 mb-2">
+                <label for="validationDefault01">Primer Nombre</label>
+                <input type="text" class="form-control is-invalid" id="validationDefault01" placeholder="Ingresa tu primer nombre" name="user[name]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+                <div class="invalid-feedback">
+                    Ingrese solo letras
+                </div>
             </div>
-            <div class="col-md-6 mb-3">
-                <label for="validationDefault02">Apellidos</label>
-                <input type="text" class="form-control" id="validationDefault02" name="user[last_name]" required>
-            </div>
-        </div>
-        <div class="field">
-            <label for="validationDefault03">Documento Identidad (CPF, CI, DOC)</label>
-            <input type="text" class="form-control" id="validationDefault03" name="user[document]" required>
-        </div>
 
+            <div class="col-6 col-md-3 mb-2">
+                <label for="validationDefault02">Segundo Nombre</label>
+                <input type="text" class="form-control is-invalid" id="validationDefault02" placeholder="Ingresa tu segundo nombre" name="user[second_name]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+                <div class="invalid-feedback">
+                    Ingrese solo letras
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-2">
+                <label for="validationDefault03">Primer Apellido</label>
+                <input type="text" class="form-control is-invalid" id="validationDefault03" placeholder="Ingresa tu primer apellido" name="user[last_name]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+                <div class="invalid-feedback">
+                    Ingrese solo letras
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 mb-2">
+                <label for="validationDefault04">Segundo Apellido</label>
+                <input type="text" class="form-control is-invalid" id="validationDefault04" placeholder="Ingresa tu segundo apellido" name="user[second_surname]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+                <div class="invalid-feedback">
+                    Ingrese solo letras
+                </div>
+            </div>
+        </div>
 
         <div class="form-row field">
-
-            <div class="col-md-8 mb-3">
-                <label for="validationDefault06">Telefono</label>
-                <input type="text" class="form-control" id="validationDefault06" name="user[phone]" required>
+            <div class="col-7 col-md-4 mb-2">
+                <label for="validationDefault05">DNI</label>
+                <input class="form-control is-invalid" id="validationDefault05" placeholder="Ingrese su nro de documento" type="number" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="user[document]" required></input>
+                <div class="invalid-feedback">
+                    Ingrese solo numeros
+                </div>
             </div>
-
-            <div class="col-md-4 mb-3">
-                <label for="validationDefault05">Sexo</label>
-                <select class="custom-select" id="validationDefault05" name="user[gender]" required>
+            <div class="col-5 col-md-3 mb-2">
+                <label>Sexo</label>
+                <select class="custom-select is-invalid" name="user[gender]" onChange="validarSelect(this)" required>
                     <option selected disabled value="">Elegir...</option>
                     <option value="Femenino">Femenino</option>
                     <option value="Masculino">Masculino</option>
-
                 </select>
+                <div class="invalid-feedback">Seleccione una opcion</div>
             </div>
-
+            <div class="col-12 col-md-5 mb-2">
+                <label for="validationDefault06">Telefono</label>
+                <input class="form-control is-invalid" id="validationDefault06" placeholder="Ingrese su nro de telefono" type="number" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="user[phone]" required></input>
+                <div class="invalid-feedback">
+                    Ingrese solo numeros
+                </div>
+            </div>
         </div>
 
-        <div class="field">
-            <label>Fecha de nacimiento</label>
-        </div>
 
         <div class="form-row field">
-
-            <div class="col-md-4 mb-3">
+            <div class="col-12">
+                <label>Fecha de Nacimiento</label>
+            </div>
+            <div class="col-4 mb-3">
                 <label for="validationDefaultDia">Dia</label>
-                <select class="custom-select" id="validationDefaultDia" name="user[day]" required>
+                <select class="custom-select is-invalid" id="validationDefaultDia" onChange="validarSelect(this)" name="user[day]" required>
                     <option selected disabled value="">Elegir...</option>
                     <option value="01">01</option>
                     <option value="02">02</option>
@@ -81,14 +105,13 @@
                     <option value="29">29</option>
                     <option value="30">30</option>
                     <option value="31">31</option>
-
-
                 </select>
+                <div class="invalid-feedback">Seleccione una opcion</div>
             </div>
 
-            <div class="col-md-4 mb-3">
+            <div class="col-5 mb-3">
                 <label for="validationDefaultMes">Mes</label>
-                <select class="custom-select" id="validationDefaultMes" name="user[month]" required>
+                <select class="custom-select is-invalid" id="validationDefaultMes" onChange="validarSelect(this)" name="user[month]" required>
                     <option selected disabled value="">Elegir...</option>
                     <option value="Enero">Enero</option>
                     <option value="Febrero">Febrero</option>
@@ -103,19 +126,23 @@
                     <option value="Noviembre">Noviembre</option>
                     <option value="Diciembre">Diciembre</option>
                 </select>
+                <div class="invalid-feedback">Seleccione una opcion</div>
             </div>
 
-            <div class="col-md-4 mb-3">
+            <div class="col-3 mb-3">
                 <label for="validationDefaultAño">Año</label>
-                <input type="number" class="form-control" id="validationDefaultAño" name="user[year]" required>
+                <input type="number" class="form-control is-invalid" id="validationDefaultAño" name="user[year]" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" required>
+                <div class="invalid-feedback">
+                    Ingrese solo numeros
+                </div>
             </div>
         </div>
 
         <div class="form-row field">
 
             <div class="col-md-4 mb-3">
-                <label for="validationDefault07">Pais</label>
-                <select class="custom-select" id="validationDefault07" name="user[country]" required>
+                <label for="validationCountry">Pais</label>
+                <select class="custom-select is-invalid" id="validationCountry" name="user[country]" onChange="validarSelect(this)" required>
                     <option selected disabled value="">Elegir...</option>
                     <option value="Brasil">Brasil</option>
                     <option value="Colombia">Colombia</option>
@@ -126,28 +153,39 @@
                     <option value="Portugal">Portugal</option>
                     <option value="USA">USA</option>
                     <option value="Venezuela">Venezuela</option>
-
                 </select>
+                <div class="invalid-feedback">Seleccione una opcion</div>
             </div>
             <div class="col-md-4 mb-3">
-                <label for="validationDefault08">Estado</label>
-                <input type="text" class="form-control" id="validationDefault08" name="user[state]" required>
+                <label for="validationState">Estado</label>
+                <input type="text" class="form-control is-invalid" id="validationState" name="user[state]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+                <div class="invalid-feedback">
+                    Ingrese solo letras
+                </div>
             </div>
 
             <div class="col-md-4 mb-3">
-                <label for="validationDefault09">Ciudad</label>
-                <input type="text" class="form-control" id="validationDefault09" name="user[city]" required>
+                <label for="validationCity">Ciudad</label>
+                <input type="text" class="form-control is-invalid" id="validationCity" name="user[city]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+                <div class="invalid-feedback">
+                    Ingrese solo letras
+                </div>
             </div>
         </div>
         <div class="field">
-            <label for="validationDefault10">Dirección</label>
-            <input type="text" class="form-control" id="validationDefault10" name="user[address]" value="" required>
+            <label for="validationAddress">Dirección</label>
+            <input type="text" class="form-control is-invalid" id="validationAddress" name="user[address]" onkeypress="return address(event,this)" onkeyup="return validarInput(event,this)" value="" required>
+            <div class="invalid-feedback">
+                El campo no puede estar vacio
+            </div>
         </div>
 
-
         <div class="field">
-            <%= f.label :email, "correo electronico" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <label>Correo Electronico</label>
+            <input class="form-control is-invalid" placeholder="Ingrese su correo electronico" name="user[email]" autofocus="autofocus" autocomplete="autocomplete" onkeypress="return address(event,this)" onkeyup="return validarInput(event,this)" value="" type="email" required></input>
+            <div class="invalid-feedback">
+                El campo no puede estar vacio
+            </div>
         </div>
 
         <div class="field">
@@ -174,6 +212,208 @@
         <% end %>
 
         <%= render "devise/shared/links" %>
-    
     </div>
+
 </div>
+
+<script>
+    function validarInput(e, input) {
+        key = e.keyCode;
+        if (key == 8) {
+            valor2 = input.value.toLowerCase();
+
+            if (valor2.trim() === "") {
+                input.classList.remove("is-valid");
+                input.classList.add("is-invalid");
+            }
+        }
+    }
+
+    function address(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+
+        valor = input.value.toLowerCase();
+        valor = valor.concat("", tecla);
+        if (valor.trim() != "") {
+
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+            
+
+            return true;
+        }else if(valor.trim() != " "){
+            input.value = "";
+        }
+        
+    }
+
+    function soloLetras(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+        //especiales = [8, 46, 32];
+
+        /*tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+        */
+        if (letras.indexOf(tecla) == -1) {
+
+            return false;
+
+        } else {
+            valor = input.value.toLowerCase();
+            valor = valor.concat("", tecla);
+
+            if (valor != "") {
+                input.classList.remove("is-invalid");
+                input.classList.add("is-valid");
+            }
+
+            return true;
+        }
+    }
+
+    function soloNumeros(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "1234567890";
+        especiales = [];
+
+        /*
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+        */
+
+        if (letras.indexOf(tecla) == -1) {
+
+            return false;
+
+        } else {
+
+            valor = input.value.toLowerCase();
+            valor = valor.concat("", tecla);
+
+            if (valor != "") {
+                input.classList.remove("is-invalid");
+                input.classList.add("is-valid");
+            }
+
+            return true;
+        }
+    }
+
+    function validarSelect(x) {
+        select = x
+        //num = y;
+        coincidencia = false;
+
+        if (select.value != "") {
+            select.classList.remove("is-invalid");
+            select.classList.add("is-valid");
+        }
+        /*
+        if (num == 1) {
+            valores_permit = ["soltero", "casado", "divorciado"];
+        } else {
+            valores_permit = ["informatica", "derecho", "administracion", "telecomunicaciones"];
+        }
+
+        for (j = 0; j < valores_permit.length; j++) {
+            if (valor.value == valores_permit[j]) {
+                coincicendia = true;
+                values = valores_permit[j]
+            }
+        }
+        if (coincidencia == false) {
+            valor.value = values;
+        } else {
+            valor.value = " ";
+        }
+        */
+    }
+    /*
+    function validar_email(valor) {
+        
+
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3,4})+$/.test(valor)) {
+            console.log("La dirección de email " + valor + " es correcta.");
+        } else {
+            console.log("La dirección de email es incorrecta.");
+        }
+        
+        if resultado === true{
+            element.classList.remove("is-valid");
+            element.classList.add("is-invalid");
+        }
+    
+    }
+    /*
+    
+
+    function limpia(inputs) {
+        var val = inputs.value;
+        var tam = val.length;
+        for (i = 0; i < tam; i++) {
+            if (!isNaN(val[i]))
+                inputs.value = '';
+        }
+    }
+
+    // Formatear valores de Inputs
+    function textUpperCase() {
+        x = this.value;
+        this.value = x.toUpperCase();
+    }
+
+    var elegido = false;
+
+    var elementosInput = document.getElementsByTagName('input'); //Elementos input
+
+    for (var i = 0; i < elementosInput.length; i++) {
+
+        if (elementosInput[i].type == 'text' && elegido == false) {
+            var elegidoParaFoco = elementosInput[i];
+            elegido = true;
+        }
+
+        if (elementosInput[i].type == 'text') {
+
+            elementosInput[i].addEventListener('blur', textUpperCase);
+
+            elementosInput[i].addEventListener('focus', textUpperCase);
+
+        }
+
+    }
+
+    var elegidoTextA = false;
+
+    var elementoTextArea = document.getElementsByTagName('textarea');
+
+    for (var i = 0; i < elementoTextArea.length; i++) {
+
+        if (elegidoTextA == false) {
+            var elegidoParaFoco = elementoTextArea[i];
+            elegidoTextA = true;
+        }
+
+        elementoTextArea[i].addEventListener('blur', textUpperCase);
+
+        elementoTextArea[i].addEventListener('focus', textUpperCase);
+    }
+    //VALIDACIONES
+
+    
+    */
+</script>

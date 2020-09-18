@@ -17,13 +17,16 @@ li {
     list-style: none;
 }
 .bg-nav{
-    background: rgba(236, 240, 241,0.7);
+    background: rgb(236, 240, 241);
     border-radius: 10px;
 }
 .margin-tp{
     margin-top: 1.5em;
 }
-
+.small-container{
+    
+    max-width: 650px;
+}
 .center-block{
     margin: auto;
 }
@@ -33,7 +36,7 @@ li {
 .field{
     @extend .margin-tp;
     label{
-        @extend .text-uppercase;
+        
         @extend .text-info;
         @extend .font-weight-bold;
     }
@@ -61,6 +64,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
 #montoRecibir{
     background-color: #bbbfc0 !important;
 }

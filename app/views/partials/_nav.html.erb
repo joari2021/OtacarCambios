@@ -16,7 +16,7 @@
                 <% if user_signed_in?%>
 
                 <li class="nav-item">
-                    <%= link_to "Enviar Dinero", destroy_user_session_path, method: :delete, class:"nav-link" %>
+                    <%= link_to "Enviar Dinero", new_transaction_path, class:"nav-link" %>
                 </li>
                 <li class="nav-item">
                     <%= link_to "Calcular Envio", user_root_path, class:"nav-link" %>
@@ -25,11 +25,12 @@
                     <%= link_to "Cuentas Registradas", banks_path, class:"nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "Transferencias Realizadas", destroy_user_session_path, method: :delete, class:"nav-link" %>
+                    <%= link_to "Transacciones Realizadas", transactions_path, class:"nav-link" %>
                 </li>
                 <li class="nav-item">
-                    <%= link_to "Estatus de mis transacciones", destroy_user_session_path, method: :delete, class:"nav-link" %>
+                    <a href="/status_transactions" class="nav-link">Estatus de mis transacciones</a>
                 </li>
+                
 
                 <% if current_user.is_admin?%>
                 <li class="nav-item">
@@ -39,6 +40,9 @@
             
                 <li class="nav-item">
                     <%= link_to "Perfil", edit_user_registration_path, class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Salir", destroy_user_session_path, method: :delete, class:"nav-link" %>
                 </li>
                 <% else %>
                 <li class="nav-item">

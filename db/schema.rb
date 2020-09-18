@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_10_200047) do
+ActiveRecord::Schema.define(version: 2020_09_16_182331) do
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(version: 2020_09_10_200047) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.decimal "monto", precision: 18, scale: 3
+    t.string "metodo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", default: 1, null: false
+    t.integer "account_destinity", default: 1
+    t.integer "payment_bank", default: 1
+    t.string "status", default: "enviada"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -66,7 +78,6 @@ ActiveRecord::Schema.define(version: 2020_09_10_200047) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "last_name"
-    t.string "document"
     t.string "phone"
     t.integer "day"
     t.string "month"
@@ -78,9 +89,13 @@ ActiveRecord::Schema.define(version: 2020_09_10_200047) do
     t.string "address"
     t.string "num_user"
     t.integer "permission_level", default: 1
+    t.string "second_name"
+    t.string "second_surname"
+    t.integer "document"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "banks", "users"
+  add_foreign_key "transactions", "users"
 end
