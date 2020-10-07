@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_182331) do
+ActiveRecord::Schema.define(version: 2020_10_07_133211) do
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -31,27 +31,27 @@ ActiveRecord::Schema.define(version: 2020_09_16_182331) do
   create_table "rates", force: :cascade do |t|
     t.string "country"
     t.string "moneda"
-    t.integer "monto_oferta"
-    t.decimal "rate_argentina", precision: 9, scale: 3
-    t.decimal "rate_argentina_min", precision: 9, scale: 3
-    t.decimal "rate_brasil", precision: 9, scale: 3
-    t.decimal "rate_brasil_min", precision: 9, scale: 3
-    t.decimal "rate_chile", precision: 9, scale: 3
-    t.decimal "rate_chile_min", precision: 9, scale: 3
-    t.decimal "rate_ecuador", precision: 9, scale: 3
-    t.decimal "rate_ecuador_min", precision: 9, scale: 3
-    t.decimal "rate_españa", precision: 9, scale: 3
-    t.decimal "rate_españa_min", precision: 9, scale: 3
-    t.decimal "rate_panama", precision: 9, scale: 3
-    t.decimal "rate_panama_min", precision: 9, scale: 3
-    t.decimal "rate_peru", precision: 9, scale: 3
-    t.decimal "rate_peru_min", precision: 9, scale: 3
-    t.decimal "rate_portugal", precision: 9, scale: 3
-    t.decimal "rate_portugal_min", precision: 9, scale: 3
-    t.decimal "rate_usa", precision: 9, scale: 3
-    t.decimal "rate_usa_min", precision: 9, scale: 3
-    t.decimal "rate_venezuela", precision: 9, scale: 3
-    t.decimal "rate_venezuela_min", precision: 9, scale: 3
+    t.integer "monto_oferta", default: 0
+    t.decimal "rate_argentina", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_argentina_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_brasil", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_brasil_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_chile", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_chile_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_ecuador", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_ecuador_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_españa", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_españa_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_panama", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_panama_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_peru", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_peru_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_portugal", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_portugal_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_usa", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_usa_min", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_venezuela", precision: 9, scale: 2, default: "0.0"
+    t.decimal "rate_venezuela_min", precision: 9, scale: 2, default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -92,6 +92,10 @@ ActiveRecord::Schema.define(version: 2020_09_16_182331) do
     t.string "second_name"
     t.string "second_surname"
     t.integer "document"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

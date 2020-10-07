@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Otacar Cambios</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width-device-width, initial-scale=1, shrink-to-fit=no">
+    <%if user_signed_in?%>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= render "partials/nav" %>
+    <%end%>
+    <%unless user_signed_in?%>
+    <link rel="stylesheet" href="/css/style_signed.css" />
     
-    <% if notice %>
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    
+    <%end%>
+</head>
+
+<body>
+    <%if user_signed_in?%>
+    <%= render "partials/nav" %>
+    <%end%>
+    <% if notice && user_signed_in?%>
 
     <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
         <i class="fas fa-check-circle mr-2" style="font-size:30px"></i><%= notice %>
@@ -22,7 +35,7 @@
         </button>
     </div>
     <%end%>
-    <% if alert %>
+    <% if alert && user_signed_in?%>
     <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
         <i class="fas fa-exclamation-triangle mr-2" style="font-size:30px"></i><%= alert %><button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -30,9 +43,10 @@
 
     </div>
     <%end%>
-    
+
     <%= yield %>
 
-    
-  </body>
+
+</body>
+
 </html>

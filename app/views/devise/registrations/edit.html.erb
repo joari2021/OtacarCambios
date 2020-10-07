@@ -92,16 +92,16 @@
                 <label for="validationDefault07">Pais</label>
                 <select class="custom-select" id="validationDefault07" name="user[country]" required>
                     <option selected disabled value="">Elegir...</option>
-                    <option value="Brasil">Brasil</option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="España">España</option>
-                    <option value="Panama">Panama</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="USA">USA</option>
-                    <option value="Venezuela">Venezuela</option>
-
+                    <option value="Argentina" <%if current_user.country === "Argentina"%>selected<%end%>>Argentina</option>
+                    <option value="Brasil" <%if current_user.country === "Brasil"%>selected<%end%>>Brasil</option>
+                    <option value="Colombia" <%if current_user.country === "Chile"%>selected<%end%>>Chile</option>
+                    <option value="Ecuador" <%if current_user.country === "Ecuador"%>selected<%end%>>Ecuador</option>
+                    <option value="España" <%if current_user.country === "España"%>selected<%end%>>España</option>
+                    <option value="Panama" <%if current_user.country === "Panama"%>selected<%end%>>Panama</option>
+                    <option value="Peru" <%if current_user.country === "Peru"%>selected<%end%>>Peru</option>
+                    <option value="Portugal" <%if current_user.country === "Portugal"%>selected<%end%>>Portugal</option>
+                    <option value="USA" <%if current_user.country === "USA"%>selected<%end%>>USA</option>
+                    <option value="Venezuela" <%if current_user.country === "Venezuela"%>selected<%end%>>Venezuela</option>
                 </select>
             </div>
             <div class="col-md-4 mb-3">

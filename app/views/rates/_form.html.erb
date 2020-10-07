@@ -19,7 +19,7 @@
 
     <div class="col-4">
         <%= form.label :monto_oferta, "Monto Oferta" %>
-        <%= form.text_field :monto_oferta, id:"montoOferta" %>
+        <%= form.number_field :monto_oferta, id:"montoOferta", step: 0.01%>
     </div>
 
     <div class="col-4">
@@ -35,12 +35,12 @@
 
         <div class="col-6">
             <%= form.label :rate_argentina, "Sin tasa minima" %>
-            <%= form.number_field :rate_argentina, step: :any%>
+            <%= form.number_field :rate_argentina, step: 0.01, required: :required%>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_argentina_min, "A partir de " %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_argentina_min, step: :any %>
+            <%= form.label :rate_argentina_min, "A partir de " %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_argentina_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -53,12 +53,12 @@
 
         <div class="col-6">
             <%= form.label :rate_brasil, "Sin tasa minima" %>
-            <%= form.number_field :rate_brasil, step: :any%>
+            <%= form.number_field :rate_brasil, step: 0.01, required: :required%>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_brasil_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_brasil_min, step: :any %>
+            <%= form.label :rate_brasil_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_brasil_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -70,12 +70,12 @@
 
         <div class="col-6">
             <%= form.label :rate_chile, "Sin tasa minima" %>
-            <%= form.number_field :rate_chile, step: :any %>
+            <%= form.number_field :rate_chile, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_chile_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_chile_min, step: :any %>
+            <%= form.label :rate_chile_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_chile_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -86,12 +86,12 @@
 
         <div class="col-6">
             <%= form.label :rate_ecuador, "Sin tasa minima" %>
-            <%= form.number_field :rate_ecuador, step: :any %>
+            <%= form.number_field :rate_ecuador, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_ecuador_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_ecuador_min, step: :any %>
+            <%= form.label :rate_ecuador_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_ecuador_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -103,12 +103,12 @@
 
         <div class="col-6">
             <%= form.label :rate_españa, "Sin tasa minima" %>
-            <%= form.number_field :rate_españa, step: :any %>
+            <%= form.number_field :rate_españa, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_españa_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_españa_min, step: :any %>
+            <%= form.label :rate_españa_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_españa_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -121,12 +121,12 @@
 
         <div class="col-6">
             <%= form.label :rate_panama, "Sin tasa minima" %>
-            <%= form.number_field :rate_panama, step: :any %>
+            <%= form.number_field :rate_panama, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_panama_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_panama_min, step: :any %>
+            <%= form.label :rate_panama_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_panama_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -139,12 +139,12 @@
 
         <div class="col-6">
             <%= form.label :rate_peru, "Sin tasa minima" %>
-            <%= form.number_field :rate_peru, step: :any %>
+            <%= form.number_field :rate_peru, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_peru_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_peru_min, step: :any %>
+            <%= form.label :rate_peru_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_peru_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -157,12 +157,12 @@
 
         <div class="col-6">
             <%= form.label :rate_portugal, "Sin tasa minima" %>
-            <%= form.number_field :rate_portugal, step: :any %>
+            <%= form.number_field :rate_portugal, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_portugal_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_portugal_min, step: :any %>
+            <%= form.label :rate_portugal_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_portugal_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -175,12 +175,12 @@
 
         <div class="col-6">
             <%= form.label :rate_usa, "Sin tasa minima" %>
-            <%= form.number_field :rate_usa, step: :any %>
+            <%= form.number_field :rate_usa, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_usa_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_usa_min, step: :any %>
+            <%= form.label :rate_usa_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_usa_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -193,12 +193,12 @@
 
         <div class="col-6">
             <%= form.label :rate_venezuela, "Sin tasa minima" %>
-            <%= form.number_field :rate_venezuela, step: :any %>
+            <%= form.number_field :rate_venezuela, step: 0.01, required: :required %>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_venezuela_min, "A partir de" %><span class="text-primary font-weight-bold"> <%=rate.monto_oferta%></span><span class="text-primary font-weight-bold"> <%=rate.moneda%></span>
-            <%= form.number_field :rate_venezuela_min, step: :any %>
+            <%= form.label :rate_venezuela_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_venezuela_min, step: 0.01 %>
         </div>
     </div>
 </div>
@@ -212,37 +212,50 @@
 <% end %>
 
 <script>
-    var caja = function() {
-        var elementosDiv = document.getElementsByTagName("div");
-        
 
-        for (i=0; i<elementosDiv.length; i++){
-            if(elementosDiv[i].className == "d-none"){
+    var caja = function() {
+        
+        var elementosDiv = document.getElementsByTagName("div");
+
+
+        for (i = 0; i < elementosDiv.length; i++) {
+            if (elementosDiv[i].className == "d-none") {
                 elementosDiv[i].className = ""
             }
-            if(elementosDiv[i].id == input.value){
+            if (elementosDiv[i].id == input.value && input.value != "") {
                 elementosDiv[i].className = "d-none"
             }
         }
 
     }
-    var añadirMoneda = function () {
+    var añadirMoneda = function() {
         elementosSpan = document.getElementsByTagName("span")
-        
-        for(i=3; i<elementosSpan.length; i+=2){
+
+        for (i = 3; i < elementosSpan.length; i += 2) {
             
-            elementosSpan[i].innerHTML = " " + moneda.value
-            
+            if (monto.value > 0){
+                elementosSpan[i].innerHTML = " " + moneda.value;
+            }else{
+                elementosSpan[i].innerHTML = "";
+            }                    
         }
     }
 
-    var añadirMonto = function () {
-        elementosSpan = document.getElementsByTagName("span")
-        
-        for(i=2; i<elementosSpan.length; i+=2){
-            
-            elementosSpan[i].innerHTML = " " + monto.value
-            
+    var añadirMonto = function() {
+        var elementosSpan = document.getElementsByTagName("span");
+        var inputs = document.getElementsByTagName("input");
+
+        for (i = 2; i < elementosSpan.length; i += 2) {
+
+            if (monto.value > 0){
+                elementosSpan[i].innerHTML = " " + monto.valueAsNumber.toFixed(2);
+                elementosSpan[i+1].innerHTML = " " + moneda.value
+                inputs[i+4].removeAttribute("disabled");
+            }else{
+                elementosSpan[i].innerHTML = "";
+                elementosSpan[i+1].innerHTML = "";
+                inputs[i+4].setAttribute("disabled", "disabled");
+            }            
         }
     }
 
@@ -250,8 +263,28 @@
     var moneda = document.getElementById('moneda');
     var monto = document.getElementById('montoOferta');
 
-    input.addEventListener("blur", caja);
-    moneda.addEventListener("change", añadirMoneda);
-    monto.addEventListener("change", añadirMonto);
+    input.addEventListener("input", caja);
+    moneda.addEventListener("input", añadirMoneda);
+    monto.addEventListener("input", añadirMonto);
 
+
+    //Formateo de valor con dos decimales
+
+    var inputs = document.getElementsByTagName("input");
+
+    // te aseguras que el valor inicial tiene el formato correcto
+   
+    var formatvalues = function() {
+        for (var i = 0; i < inputs.length; i++) {
+            if (i != 0 && i != 1 && i != 2 && i != 4 && i != 23) {
+                inputs[i].value = inputs[i].valueAsNumber.toFixed(2);
+
+                inputs[i].addEventListener('input', function(event) {
+                    event.target.value = event.target.valueAsNumber.toFixed(2)
+                });
+            }
+        }
+    }
+    formatvalues();
+    
 </script>

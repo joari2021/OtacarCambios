@@ -1,140 +1,169 @@
-<!-- Esto-->
-<%if @rate.country != "Argentina"%>
+<%if @rate.country != "Argentina" && @rate.rate_argentina > 0%>
 <h5>Argentina</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_argentina_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_argentina %>
+        <span>1$ = <%= number_with_precision @rate.rate_argentina, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_argentina_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_argentina_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_argentina_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "Brasil"%>
+<%if @rate.country != "Brasil" && @rate.rate_brasil > 0%>
 <h5>Brasil</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_brasil_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_brasil %>
+        <span>1$ = <%= number_with_precision @rate.rate_brasil, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_brasil_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_brasil_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_brasil_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "Chile"%>
+<%if @rate.country != "Chile" && @rate.rate_chile > 0%>
 <h5>Chile</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_chile_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_chile %>
+        <span>1$ = <%= number_with_precision @rate.rate_chile, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_chile_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_chile_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_chile_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "Ecuador"%>
+<%if @rate.country != "Ecuador" && @rate.rate_ecuador > 0%>
 <h5>Ecuador</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_ecuador_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_ecuador %>
+        <span>1$ = <%= number_with_precision @rate.rate_ecuador, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_ecuador_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_ecuador_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_ecuador_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "España"%>
+<%if @rate.country != "España" && @rate.rate_españa > 0%>
 <h5>España</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_españa_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_españa %>
+        <span>1$ = <%= number_with_precision @rate.rate_españa, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_españa_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_españa_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_españa_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "Panama"%>
+<%if @rate.country != "Panama" && @rate.rate_panama > 0%>
 <h5>Panama</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_panama_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_panama %>
+        <span>1$ = <%= number_with_precision @rate.rate_panama, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_panama_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_panama_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_panama_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "Peru"%>
+<%if @rate.country != "Peru" && @rate.rate_peru > 0%>
 <h5>Peru</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_peru_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_peru %>
+        <span>1$ = <%= number_with_precision @rate.rate_peru, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_peru_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_peru_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_peru_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "Portugal"%>
+<%if @rate.country != "Portugal" && @rate.rate_portugal > 0%>
 <h5>Portugal</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_portugal_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_portugal %>
+        <span>1$ = <%= number_with_precision @rate.rate_portugal, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_portugal_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_portugal_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_portugal_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "USA"%>
-<h5>USA</h5>
-<div class="row">
-    <div class="col-6">
+<%if @rate.country != "USA" && @rate.rate_usa > 0%>
+<h5>Chile</h5>
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_usa_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_usa %>
+        <span>1$ = <%= number_with_precision @rate.rate_usa, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_usa_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_usa_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_usa_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>
 
-<%if @rate.country != "Venezuela"%>
+<%if @rate.country != "Venezuela" && @rate.rate_venezuela > 0%>
 <h5>Venezuela</h5>
-<div class="row">
-    <div class="col-6">
+<div class="row">    
+    <div class="<%if @rate.monto_oferta > 0 && @rate.rate_venezuela_min > 0%>col-6<%else%>col-12<%end%>">
         <h6>Sin tasa minima</h6>
-        <%= @rate.rate_venezuela %>
+        <span>1$ = <%= number_with_precision @rate.rate_venezuela, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span> 
     </div>
+    <%if @rate.monto_oferta > 0 && @rate.rate_venezuela_min > 0%>
     <div class="col-6">
-        <h6>A partir de <%=@rate.monto_oferta%> <%=@rate.moneda%> </h6>
-        <%= @rate.rate_venezuela_min %>
+        <h6>A partir de <%= number_with_precision @rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%> </h6>
+        <span>1$ = <%= number_with_precision @rate.rate_venezuela_min, :precision => 2, :delimiter => ".", :separator => ","%> <%=@rate.moneda%></span>  
     </div>
+    <%end%>
 </div>
+<hr>
 <%end%>

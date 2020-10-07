@@ -2,7 +2,7 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary m-3 " data-toggle="modal" data-target="#exampleModal">
-        Ver Tasas de <%=current_user.country%>
+        Ver Tasas de otros Paises
     </button>
 
     <!-- Modal -->
@@ -22,8 +22,7 @@
                             <% @rates.each do |rate| %>
 
                             <%if current_user.country === rate.country%>
-                            <!-- Esto -->
-
+                        
                             <%@rate = rate%>
                             <%= render "partials/tasas", collection: @rate %>
 
@@ -50,17 +49,21 @@
             <div class="px-2">
                 <select class="custom-select" id="pais" onchange=''>
                     <option selected disabled value="">Elige un Pais...</option>
-                    <%if current_user.country != "Argentina"%><option value="Argentina">Argentina</option><%end%>
-                    <%if current_user.country != "Brasil"%><option value="Brasil">Brasil</option><%end%>
-                    <%if current_user.country != "Chile"%><option value="Chile">Chile</option><%end%>
-                    <%if current_user.country != "Ecuador"%><option value="Ecuador">Ecuador</option><%end%>
-                    <%if current_user.country != "España"%><option value="España">España</option><%end%>
-                    <%if current_user.country != "Panama"%><option value="Panama">Panama</option><%end%>
-                    <%if current_user.country != "Peru"%><option value="Peru">Peru</option><%end%>
-                    <%if current_user.country != "Portugal"%><option value="Portugal">Portugal</option><%end%>
-                    <%if current_user.country != "USA"%><option value="USA">USA</option><%end%>
-                    <%if current_user.country != "Venezuela"%><option value="Venezuela">Venezuela</option><%end%>
-
+                    <%@rates.each do |rate|%>
+                    <%if rate.country === current_user.country%>
+                    
+                    <%if current_user.country != "Argentina" && rate.rate_argentina > 0%><option value="Argentina">Argentina</option><%end%>
+                    <%if current_user.country != "Brasil" && rate.rate_brasil > 0%><option value="Brasil">Brasil</option><%end%>
+                    <%if current_user.country != "Chile" && rate.rate_chile > 0%><option value="Chile">Chile</option><%end%>
+                    <%if current_user.country != "Ecuador" && rate.rate_ecuador > 0%><option value="Ecuador">Ecuador</option><%end%>
+                    <%if current_user.country != "España" && rate.rate_españa > 0%><option value="España">España</option><%end%>
+                    <%if current_user.country != "Panama" && rate.rate_panama > 0%><option value="Panama">Panama</option><%end%>
+                    <%if current_user.country != "Peru" && rate.rate_peru > 0%><option value="Peru">Peru</option><%end%>
+                    <%if current_user.country != "Portugal" && rate.rate_portugal > 0%><option value="Portugal">Portugal</option><%end%>
+                    <%if current_user.country != "USA" && rate.rate_usa > 0%><option value="USA">USA</option><%end%>
+                    <%if current_user.country != "Venezuela" && rate.rate_venezuela > 0%><option value="Venezuela">Venezuela</option><%end%>
+                    <%end%>
+                    <%end%>
                 </select>
             </div>
         </div>
@@ -247,15 +250,22 @@
             <%if current_user.country != "USA"%>
             case "USA":
                 var montoE = montoEnvio.value;
-                if(montoE < <%=rate.monto_oferta%>){
-                    var  tasa = <%=rate.rate_usa%>;
+                if(<%=rate.monto_oferta%> > 0){
+                    if(montoE < <%=rate.monto_oferta%>){
+                        var  tasa = <%=rate.rate_usa%>;
+                        console.log(tasa);
+                    }else{
+                        var  tasa = <%=rate.rate_usa_min%>;
+                        console.log(tasa);
+                    }
                 }else{
-                    var  tasa = <%=rate.rate_usa_min%>;
+                    var  tasa = <%=rate.rate_usa%>;
+                    console.log(tasa);
                 }
                 
                 var resultado = montoE * tasa;
 
-                montoRecibir.value = resultado.toFixed(3);
+                montoRecibir.value = resultado.toFixed(2);
                 if (montoRecibir.value == "NaN"){
                     montoRecibir.value = "Monto a enviar invalido";
                 }
@@ -265,7 +275,7 @@
             <%if current_user.country != "Venezuela"%>
             case "Venezuela":
                 var montoE = montoEnvio.value;
-                if(montoE < <%=rate.monto_oferta%>){
+                if(<%=rate.monto_oferta%> > 0 && montoE < <%=rate.monto_oferta%>){
                     var  tasa = <%=rate.rate_venezuela%>;
                 }else{
                     var  tasa = <%=rate.rate_venezuela_min%>;
