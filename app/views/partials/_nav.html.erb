@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md bg-light fixed-top">
+<!--<nav class="navbar navbar-expand-md bg-light fixed-top">
     <div class="container-fluid">
         <%if user_signed_in?%>
         <span class="navbar-brand text-primary">
@@ -16,20 +16,15 @@
                 <% if user_signed_in?%>
 
                 <li class="nav-item">
-                    <%= link_to "Enviar Dinero", new_transaction_path, class:"nav-link" %>
+                    
                 </li>
                 <li class="nav-item">
-                    <%= link_to "Calcular Envio", user_root_path, class:"nav-link" %>
+                    
                 </li>
                 <li class="nav-item">
-                    <%= link_to "Cuentas Registradas", banks_path, class:"nav-link" %>
+                    
                 </li>
-                <li class="nav-item">
-                    <%= link_to "Transacciones Realizadas", transactions_path, class:"nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <a href="/status_transactions" class="nav-link">Estatus de mis transacciones</a>
-                </li>
+                
                 
 
                 <% if current_user.is_admin?%>
@@ -39,10 +34,10 @@
                 <%end%>
             
                 <li class="nav-item">
-                    <%= link_to "Perfil", edit_user_registration_path, class:"nav-link" %>
+                   
                 </li>
                 <li class="nav-item">
-                    <%= link_to "Salir", destroy_user_session_path, method: :delete, class:"nav-link" %>
+                   
                 </li>
                 <% else %>
                 <li class="nav-item">
@@ -56,3 +51,24 @@
         </div>
     </div>
 </nav>
+-->
+<div id="sidebar-container" class="bg-light border-right">
+    <div class="logo">
+        <h4 class="font-weight-bold mb-0">Otacar Cambios</h4>
+    </div>
+    <div class="menu list-group-flush">
+        <a href="/transactions/new" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="fas fa-comments-dollar lead mr-1"></i> Enviar Dinero</a>
+
+        <a href="/dhasboard" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="fas fa-calculator lead mr-2"></i> Calcular Envio</a>
+
+
+        <a href="/banks" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="far fa-file-alt lead mr-3"></i>Cuentas Registradas</a>
+
+        <a href="/transactions" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="fas fa-file-invoice lead mr-3"></i>Transacciones Realizadas</a>
+
+        <a href="/status_transactions" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="fas fa-tasks lead mr-2"></i> Estatus de mis transacciones</a>
+
+
+        <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i> Configuración</a>
+    </div>
+</div>

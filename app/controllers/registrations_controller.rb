@@ -4,6 +4,20 @@ class RegistrationsController < Devise::RegistrationsController
     @usuarios = User.all
   end
 
+  def create
+    @user = User.new(sign_up_params)
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to register_succesfull_path }
+        format.json { render :show, status: :created, location: @user }
+      else
+        format.html { render :new }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   
   def sign_up_params

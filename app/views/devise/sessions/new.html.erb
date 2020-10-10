@@ -33,13 +33,18 @@
 
     <div class="forms-container">
 
-
         <div class="signin-signup">
 
             <%if alert%>
             <div id="alert" class="show showAlert">
                 <span class="fas fa-exclamation-circle"></span>
                 <span class="msg"><%=alert%></span>
+            </div>
+            <%end%>
+            <%if notice%>
+                <div id="notice" class="show showAlert">
+                <span class="fas fa-check-circle"></span>
+                <span class="msg"><%=notice%></span>
             </div>
             <%end%>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html => {:class => "sign-in-form"}) do |f| %>
@@ -56,7 +61,8 @@
 
             <%= f.submit "Continuar", class:"btn solid"%>
 
-            <a href="/users/password/new">Olvide mi contraseña</a>
+            <a href="/users/password/new">Olvidaste tu contraseña?</a>
+            <a href="/users/confirmation/new">No has recibido las instrucciones de confirmacion?</a>
             <%end%>
             
 
@@ -112,22 +118,30 @@
 </div>
 
 <script>
-    var campoAlerta = document.getElementById("alert");
 
+    <%if alert%>
+    var campoAlerta = document.getElementById("alert");
     setTimeout(() => {
         campoAlerta.classList.add("hide");
         campoAlerta.classList.remove("show");
     }, 5000);
+    <%end%>
+
+    <%if notice%>
+    var campoAlerta = document.getElementById("notice");
+    setTimeout(() => {
+        campoAlerta.classList.add("hide");
+        campoAlerta.classList.remove("show");
+    }, 5000);
+    <%end%>
 
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
     const container = document.querySelector(".container");
     
-
-
     sign_up_btn.addEventListener("click", () => {
 
-        <%if alert%>
+        <%if alert || notice%>
         campoAlerta.classList.add("hide");
         campoAlerta.classList.remove("show");
         campoAlerta.classList.remove("showAlert");
