@@ -1,187 +1,592 @@
-<div class="container small-container center-block bg-nav">
-    <div class="margin-top pt-4 px-5 pb-2">
-        <h2 class="text-uppercase text-info font-weight-bold">Editar Perfil</h2>
-
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <%number = current_user.id.to_s.length %>
-        <%num_vacio = "000000000"%>
-        <%num_vacio = num_vacio[number...]%>
-        <%num_comp = num_vacio << current_user.id.to_s%>
-
-        <div class="field">
-            <label for="validationDefault16">N° Usuario</label>
-            <input type="text" class="form-control" id="validationDefault16" value="<%=num_comp%>" readonly>
-        </div>
-
-        <div class="form-row field">
-            <div class="col-md-6 mb-3">
-                <label for="validationDefault01">Nombres</label>
-                <input type="text" class="form-control" id="validationDefault01" name="user[name]" value="<%=current_user.name%>" required>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="validationDefault02">Apellidos</label>
-                <input type="text" class="form-control" id="validationDefault02" name="user[last_name]" value="<%=current_user.last_name%>" required>
-            </div>
-        </div>
-        <div class="field">
-            <label for="validationDefault03">Documento Identidad (CPF, CI, DOC)</label>
-            <input type="text" class="form-control" id="validationDefault03" name="user[document]" value="<%=current_user.document%>" required>
-        </div>
-
-
-        <div class="form-row field">
-
-            <div class="col-md-8 mb-3">
-                <label for="validationDefault06">Telefono</label>
-                <input type="text" class="form-control" id="validationDefault06" name="user[phone]" value="<%=current_user.phone%>" required>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <label for="validationDefault05">Sexo</label>
-                <select class="custom-select" id="validationDefault05" name="user[gender]" required>
-                    <option selected disabled value="">Elegir...</option>
-                    <option value="Femenino" <%if current_user.gender === "Femenino"%>selected<%end%>>Femenino</option>
-                    <option value="Masculino" <%if current_user.gender === "Masculino"%>selected<%end%>>Masculino</option>
-
-                </select>
-            </div>
-
-        </div>
-
-        <div class="field">
-            <label>Fecha de nacimiento</label>
-        </div>
-
-        <div class="form-row field">
-
-            <div class="col-md-4 mb-3">
-                <label for="validationDefaultDia">Dia</label>
-                <input type="number" class="form-control" id="validationDefaultDia" name="user[day]" value="<%=current_user.day%>" required>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <label for="validationDefaultMes">Mes</label>
-                <select class="custom-select" id="validationDefaultMes" name="user[month]" required>
-                    <option selected disabled value="">Elegir...</option>
-                    <option value="Enero" <%if current_user.month === "Enero"%>selected<%end%>>Enero</option>
-                    <option value="Febrero" <%if current_user.month === "Febrero"%>selected<%end%>>Febrero</option>
-                    <option value="Marzo" <%if current_user.month === "Marzo"%>selected<%end%>>Marzo</option>
-                    <option value="Abril" <%if current_user.month === "Abril"%>selected<%end%>>Abril</option>
-                    <option value="Mayo" <%if current_user.month === "Mayo"%>selected<%end%>>Mayo</option>
-                    <option value="Junio" <%if current_user.month === "Junio"%>selected<%end%>>Junio</option>
-                    <option value="Julio" <%if current_user.month === "Julio"%>selected<%end%>>Julio</option>
-                    <option value="Agosto" <%if current_user.month === "Agosto"%>selected<%end%>>Agosto</option>
-                    <option value="Septiembre" <%if current_user.month === "Septiembre"%>selected<%end%>>Septiembre</option>
-                    <option value="Octubre" <%if current_user.month === "Octubre"%>selected<%end%>>Octubre</option>
-                    <option value="Noviembre" <%if current_user.month === "Noviembre"%>selected<%end%>>Noviembre</option>
-                    <option value="Diciembre" <%if current_user.month === "Diciembre"%>selected<%end%>>Diciembre</option>
-                </select>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <label for="validationDefaultAño">Año</label>
-                <input type="number" class="form-control" id="validationDefaultAño" name="user[year]" value="<%=current_user.year%>" required>
-            </div>
-        </div>
-
-        <div class="form-row field">
-
-            <div class="col-md-4 mb-3">
-                <label for="validationDefault07">Pais</label>
-                <select class="custom-select" id="validationDefault07" name="user[country]" required>
-                    <option selected disabled value="">Elegir...</option>
-                    <option value="Argentina" <%if current_user.country === "Argentina"%>selected<%end%>>Argentina</option>
-                    <option value="Brasil" <%if current_user.country === "Brasil"%>selected<%end%>>Brasil</option>
-                    <option value="Colombia" <%if current_user.country === "Chile"%>selected<%end%>>Chile</option>
-                    <option value="Ecuador" <%if current_user.country === "Ecuador"%>selected<%end%>>Ecuador</option>
-                    <option value="España" <%if current_user.country === "España"%>selected<%end%>>España</option>
-                    <option value="Panama" <%if current_user.country === "Panama"%>selected<%end%>>Panama</option>
-                    <option value="Peru" <%if current_user.country === "Peru"%>selected<%end%>>Peru</option>
-                    <option value="Portugal" <%if current_user.country === "Portugal"%>selected<%end%>>Portugal</option>
-                    <option value="USA" <%if current_user.country === "USA"%>selected<%end%>>USA</option>
-                    <option value="Venezuela" <%if current_user.country === "Venezuela"%>selected<%end%>>Venezuela</option>
-                </select>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="validationDefault08">Estado</label>
-                <input type="text" class="form-control" id="validationDefault08" name="user[state]" value="<%=current_user.state%>" required>
-            </div>
-
-            <div class="col-md-4 mb-3">
-                <label for="validationDefault09">Ciudad</label>
-                <input type="text" class="form-control" id="validationDefault09" name="user[city]" value="<%=current_user.city%>" required>
-            </div>
-        </div>
-        <div class="field">
-            <label for="validationDefault10">Dirección</label>
-            <input type="text" class="form-control" id="validationDefault10" name="user[address]" value="<%=current_user.address%>" required>
-        </div>
-
-        <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-        <div class="field">
-            <%= f.label :password %> <i>(Deja el campo en blanco si no deseas cambiar tu contraseña)</i><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
-            <% if @minimum_password_length %>
-            <br />
-            <em><%= @minimum_password_length %> caracteres minimos</em>
-            <% end %>
-        </div>
-
-        <div class="field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
-
-
-        <% @usuarios.each do |usuario|%>
-
-        <%number = usuario.id.to_s.length %>
-        <%num_vacio = "000000000"%>
-        <%num_vacio = num_vacio[number...]%>
-        <%num_comp = num_vacio << usuario.id.to_s%>
-
-        <%if num_comp === current_user.num_user%>
-        <%@referencia = usuario.name << " " << usuario.last_name%>
-        <%@coincidencia = true%>
-        <%end%>
-
-        <% end %>
-
-        <%if @coincidencia === true%>
-        <div class="field">
-            <label for="validationDefault15">Referido por</label>
-            <input type="text" class="form-control" id="validationDefault15" value="<%=@referencia%>" readonly>
-        </div>
+<div class="margin-top pt-4 px-5 pb-2">
+    <div class="alert alert-primary" role="alert">
+        <%unless current_user.is_normal_user?%>
+        <strong>Bienvenid@!</strong> Debes completar el registro de tu perfil para poder disfrutar de las funcionalidades de esta pagina.
         <%else%>
-        <div class="field">
-            <input type="text" class="form-control" value="Sin Referencia" readonly>
-        </div>
+        <strong class="text-capitalize">Hola <%=current_user.name%>!</strong> Solo puedes editar tu telefono, dirección y contraseña. Si deseas editar otro dato debes enviar un correo a otacarcambios@gmail.com y tu requerimiento sera atendido por esa via.
         <%end%>
-
-        <div class="field">
-            <%= f.label :current_password %> <i>(Debes ingresar tu contraseña actual para confirmar los cambios)</i><br />
-            <%= f.password_field :current_password, autocomplete: "current-password" %>
-        </div>
-
-        <div class="actions">
-            <%= f.submit "Actualizar", class:"btn btn-primary mt-2" %>
-        </div>
-        <% end %>
-
-        <h3>Cancelar Cuenta</h3>
-
-        <p>Infeliz? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estas segur@ de eliminar esta cuenta, esta opcion no es reversible" }, method: :delete, class:"btn btn-danger" %></p>
-
-        <%= link_to "Volver", :back, class:"btn btn-primary" %>
     </div>
+    <h2 class="text-primary font-weight-bold">Editar Perfil</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <%number = current_user.id.to_s.length %>
+    <%num_vacio = "000000000"%>
+    <%num_vacio = num_vacio[number...]%>
+    <%num_comp = num_vacio << current_user.id.to_s%>
+
+    <div class="field">
+        <h6>* : Campos Obligatorios</h6>
+    </div>
+    <!--Nro usuario-->
+    <div class="field">
+        <label for="validationDefault16">N° Usuario</label>
+        <input type="text" class="form-control mb-3" id="validationDefault16" value="<%=num_comp%>" readonly>
+    </div>
+
+    <!--Nombres y Apellidos-->
+    <div class="form-row field mb-3">
+        <div class="col-6 col-md-3 mb-2">
+            <label for="validationFirstName">Primer Nombre *</label>
+            <%unless current_user.is_normal_user?%>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationFirstName" name="user[name]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" autofocus="autofocus" maxlength="15" required>
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.name%>" readonly>
+            <%end%>
+        </div>
+
+
+        <div class="col-6 col-md-3 mb-2">
+            <label for="validationSecondName">Segundo Nombre</label>
+            <%unless current_user.is_normal_user?%>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationSecondName" name="user[second_name]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)">
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.second_name%>" readonly>
+            <%end%>
+        </div>
+
+        <div class="col-6 col-md-3 mb-2">
+            <label for="validationLastName">Primer Apellido *</label>
+            <%unless current_user.is_normal_user?%>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationLastName" name="user[last_name]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.last_name%>" readonly>
+            <%end%>
+        </div>
+
+        <div class="col-6 col-md-3 mb-2">
+            <label for="validationSecondSurname">Segundo Apellido</label>
+            <%unless current_user.is_normal_user?%>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationSecondSurname" name="user[second_surname]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)">
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.second_surname%>" readonly>
+            <%end%>
+        </div>
+    </div>
+
+    <!--DNI, Sexo y Phone-->
+    <div class="form-row field mb-3">
+        <div class="col-7 col-md-4 mb-2">
+            <label for="validationDNI">DNI *</label>
+            <input class="form-control text-capitalize" value="<%=current_user.document%>" readonly>
+            
+        </div>
+
+        <div class="col-5 col-md-3 mb-2">
+            <label>Sexo *</label>
+            <%unless current_user.is_normal_user?%>
+            <select class="custom-select is-invalid" name="user[gender]" onChange="validarSelect(this)" required>
+                <option selected disabled value="">Elegir...</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+            </select>
+            <div class="invalid-feedback">Seleccione una opcion</div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.gender%>" readonly>
+            <%end%>
+        </div>
+
+        <div class="col-12 col-md-5 mb-2">
+            <label for="validationPhone">Telefono *</label>
+            <input class="form-control <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationPhone" type="number" maxlength="15" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="user[phone]" value="<%=current_user.phone%>" required></input>
+            <div class="invalid-feedback">
+                Ingrese solo numeros
+            </div>
+        </div>
+    </div>
+
+    <!--Fecha de Nacimiento-->
+    <div class="form-row field mb-3">
+        <div class="col-12">
+            <label>Fecha de Nacimiento *</label>
+        </div>
+        <div class="col-4 mb-3">
+            <label for="validationDefaultDia">Dia *</label>
+            <%unless current_user.is_normal_user?%>
+            <select class="custom-select is-invalid" id="validationDefaultDia" onChange="validarSelect(this)" name="user[day]" required>
+                <option selected disabled value="">Elegir...</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select>
+            <div class="invalid-feedback">Seleccione una opcion</div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.day%>" readonly>
+            <%end%>
+        </div>
+
+        <div class="col-5 mb-3">
+            <label for="validationDefaultMes">Mes *</label>
+            <%unless current_user.is_normal_user?%>
+            <select class="custom-select is-invalid" id="validationDefaultMes" onChange="validarSelect(this)" name="user[month]" required>
+                <option selected disabled value="">Elegir...</option>
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+            </select>
+            <div class="invalid-feedback">Seleccione una opcion</div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.month%>" readonly>
+            <%end%>
+        </div>
+
+        <div class="col-3 mb-3">
+            <label for="validationDefaultAño">Año *</label>
+            <%unless current_user.is_normal_user?%>
+            <input type="number" class="form-control is-invalid" id="validationDefaultAño" name="user[year]" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" required>
+            <div class="invalid-feedback">
+                Ingrese solo numeros
+            </div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.year%>" readonly>
+            <%end%>
+        </div>
+    </div>
+
+    <!-- Ubicacion -->
+    <div class="form-row field mb-3">
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCountry">Pais *</label>
+            <%unless current_user.is_normal_user?%>
+            <select class="custom-select is-invalid" id="validationCountry" name="user[country]" onChange="validarSelect(this)" required>
+                <option selected disabled value="">Elegir...</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Chile">Chile</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="España">España</option>
+                <option value="Panama">Panama</option>
+                <option value="Peru">Peru</option>
+                <option value="Portugal">Portugal</option>
+                <option value="USA">USA</option>
+                <option value="Venezuela">Venezuela</option>
+            </select>
+            <div class="invalid-feedback">Seleccione una opcion</div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.country%>" readonly>
+            <%end%>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationState">Estado *</label>
+            <%unless current_user.is_normal_user?%>
+            <input type="text" class="form-control is-invalid text-capitalize" id="validationState" name="user[state]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.state%>" readonly>
+            <%end%>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationCity">Ciudad *</label>
+            <%unless current_user.is_normal_user?%>
+            <input type="text" class="form-control is-invalid text-capitalize" id="validationCity" name="user[city]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+            <%else%>
+            <input class="form-control text-capitalize" value="<%=current_user.city%>" readonly>
+            <%end%>
+        </div>
+    </div>
+
+    <!--Direccion-->
+    <div class="field mb-3">
+        <label for="validationAddress">Dirección *</label>
+        <input type="text" class="form-control text-capitalize <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationAddress" name="user[address]" maxlength="30" onkeypress="return address(event,this)" onkeyup="return validarInput(event,this)" value="<%=current_user.address%>" required>
+
+        <div class="invalid-feedback">
+            El campo no puede estar vacio
+        </div>
+    </div>
+
+    <!--Correo Electronico-->
+    <div class="field mb-3">
+        <label>Correo Electronico *</label>
+        <input class="form-control text-lowercase" value="<%=current_user.email%>" readonly>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Actualmente esperando la confirmación del correo: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <!--Contraseña-->
+    <div class="form-row field mb-1">
+        <div class="col-6 mb-2">
+            <%= f.label :password, "Contraseña **" %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control is-invalid", id:"contraseña",  onkeyup:"return validarPassword(event)" %>
+
+        </div>
+
+        <div class="col-6">
+            <%= f.label :password_confirmation, "Confirmar Contraseña **" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control is-invalid", id:"confirmacion-contraseña", onkeyup:"return validarPassword(event)" %>
+
+        </div>
+        <div class="validar-feedback ml-1">
+            <article id="art-1" class="art-invalid"><i class="fas fa-times-circle" id="icon-1"></i> La contraseña debe tener minimo <%= @minimum_password_length %> caracteres</article>
+            <article id="art-2" class="art-invalid"><i class="fas fa-times-circle" id="icon-2"></i> Las contraseñas deben coincidir</article>
+        </div>
+    </div>
+    <i class="text-primary">** Nota: Deja los campos en blanco si no deseas cambiar tu contraseña</i>
+
+    <!--Referencia-->
+
+    <%unless current_user.is_normal_user?%>
+    <div class="was-validated mt-2">
+        <label class="text-primary font-weight-bold">La pagina te la recomendo un usuario?</label>
+        <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="customControlValidationSI" name="radio-stacked" required>
+            <label class="custom-control-label" for="customControlValidationSI">Si</label>
+        </div>
+        <div class="custom-control custom-radio mb-3">
+            <input type="radio" class="custom-control-input" id="customControlValidationNO" name="radio-stacked" required>
+            <label class="custom-control-label" for="customControlValidationNO">No</label>
+            <div class="invalid-feedback">Elije una opcion</div>
+        </div>
+    </div>
+
+    <div class="d-none" id="contenedor">
+        <div class="form-row field mb-3">
+
+            <label for="validationReferencia">Nro del Usuario</label>
+            <input class="form-control is-invalid" id="validationReferencia" type="number" maxlength="9" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="user[num_user]">
+            <div class="invalid-feedback">
+                Ingrese solo numeros
+            </div>
+
+        </div>
+    </div>
+    <%else%>
+
+    <% @users.each do |usuario|%>
+    
+    <%number = usuario.id.to_s.length %>
+    <%num_vacio = "000000000"%>
+    <%num_vacio = num_vacio[number...]%>
+    <%num_comp = num_vacio << usuario.id.to_s%>
+
+    <%if num_comp === current_user.num_user%>
+    <%@referencia = usuario.email%>
+    <%@coincidencia = true%>
+    <%end%>
+    <%end%>
+
+    <div class="field mt-3">
+        <label for="validationReferencia">Referido por</label>
+        <input type="text" class="form-control" id="validationReferencia" value="<%if @coincidencia === true%><%=@referencia%><%else%>Ningun Usuario<%end%>" readonly>
+    </div>
+    <%end%>
+
+    <!--Current Password-->
+    <div class="field my-3">
+        <%= f.label :current_password, "Contraseña Actual" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class:"is-invalid", onkeyup:"return validarCurrentPassword(event, this)" %>
+        <div class="invalid-feedback">
+            Debes ingresar tu contraseña actual para confirmar los cambios
+        </div>
+    </div>
+
+    <div class="actions">
+        <%= f.submit "Guardar", class:"btn btn-success mt-2" %>
+
+        <%= link_to "Volver", :back, class:"btn btn-success mt-2 float-right" %>
+    </div>
+    <% end %>
+
 </div>
+
+<script>
+    function validarInput(e, input) {
+        key = e.keyCode;
+        if (key == 8) {
+            valor2 = input.value.toLowerCase();
+
+            if (valor2.trim() === "" || valor2.trim() === " ") {
+                input.classList.remove("is-valid");
+                input.classList.add("is-invalid");
+            }
+        }
+    }
+
+    function address(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+
+        valor = input.value.toLowerCase();
+        valor = valor.concat("", tecla);
+
+        if (valor.trim() != "") {
+
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+
+            return true;
+
+        } else if (valor.trim() != " ") {
+            input.value = "";
+        }
+
+    }
+
+    function validarPassword(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+
+        password = document.getElementById("contraseña");
+        confirmacionPassword = document.getElementById("confirmacion-contraseña");
+        valor = password.value.toLowerCase();
+        valorC = confirmacionPassword.value.toLowerCase();
+
+        art1 = document.getElementById("art-1");
+        art2 = document.getElementById("art-2");
+        icon1 = document.getElementById("icon-1");
+        icon2 = document.getElementById("icon-2");
+
+        var longitud = false;
+        var coincidencia = false;
+
+        if (valor.length >= 8) {
+            art1.classList.remove("art-invalid");
+            art1.classList.add("art-valid");
+            icon1.classList.remove("fa-times-circle");
+            icon1.classList.add("fa-check-circle");
+
+            longitud = true;
+        }
+        if (valor == valorC && valor.length > 0) {
+            art2.classList.remove("art-invalid");
+            art2.classList.add("art-valid");
+            icon2.classList.remove("fa-times-circle");
+            icon2.classList.add("fa-check-circle");
+
+            coincidencia = true;
+        } else {
+            art2.classList.remove("art-valid");
+            art2.classList.add("art-invalid");
+            icon2.classList.remove("fa-check-circle");
+            icon2.classList.add("fa-times-circle");
+            coincidencia = false;
+        }
+
+        if (key == 8) {
+
+            if (valor.length < 8) {
+                art1.classList.remove("art-valid");
+                art1.classList.add("art-invalid");
+                icon1.classList.remove("fa-check-circle");
+                icon1.classList.add("fa-times-circle");
+
+                longitud = false;
+            }
+            if (valor != valorC && valor.length > 0) {
+                art2.classList.remove("art-valid");
+                art2.classList.add("art-invalid");
+                icon2.classList.remove("fa-check-circle");
+                icon2.classList.add("fa-times-circle");
+
+                coincidencia = false;
+            }
+        }
+
+        if (longitud && coincidencia) {
+            password.classList.remove("is-invalid");
+            password.classList.add("is-valid");
+            confirmacionPassword.classList.remove("is-invalid");
+            confirmacionPassword.classList.add("is-valid");
+        } else {
+            password.classList.remove("is-valid");
+            password.classList.add("is-invalid");
+            confirmacionPassword.classList.remove("is-valid");
+            confirmacionPassword.classList.add("is-invalid");
+        }
+
+    }
+
+    function validarCurrentPassword(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+
+        password = input.value.toLowerCase();
+
+        var longitud = password.length;
+
+        if (longitud >= 8) {
+            input.classList.remove("is-invalid");
+            input.classList.add("is-valid");
+
+        }
+
+        if (key == 8) {
+
+            if (longitud < 8) {
+                input.classList.remove("is-valid");
+                input.classList.add("is-invalid");
+            }
+
+        }
+
+    }
+
+    function soloLetras(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+        //especiales = [8, 46, 32];
+
+        if (letras.indexOf(tecla) == -1) {
+
+            return false;
+
+        } else {
+            valor = input.value.toLowerCase();
+            valor = valor.concat("", tecla);
+
+            if (valor != "") {
+                input.classList.remove("is-invalid");
+                input.classList.add("is-valid");
+            }
+
+            return true;
+        }
+    }
+
+    function soloNumeros(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "1234567890";
+        especiales = [];
+
+        if (letras.indexOf(tecla) == -1) {
+
+            return false;
+
+        } else {
+
+            valor = input.value.toLowerCase();
+            valor = valor.concat("", tecla);
+
+            if (valor != "") {
+                input.classList.remove("is-invalid");
+                input.classList.add("is-valid");
+            }
+
+            return true;
+        }
+    }
+
+    function validarSelect(x) {
+        select = x
+        //num = y;
+        coincidencia = false;
+
+        if (select.value != "") {
+            select.classList.remove("is-invalid");
+            select.classList.add("is-valid");
+        }
+        /*
+        if (num == 1) {
+            valores_permit = ["soltero", "casado", "divorciado"];
+        } else {
+            valores_permit = ["informatica", "derecho", "administracion", "telecomunicaciones"];
+        }
+
+        for (j = 0; j < valores_permit.length; j++) {
+            if (valor.value == valores_permit[j]) {
+                coincicendia = true;
+                values = valores_permit[j]
+            }
+        }
+        if (coincidencia == false) {
+            valor.value = values;
+        } else {
+            valor.value = " ";
+        }
+        */
+    }
+
+    $("#customControlValidationSI").click(function() {
+        if ($("#customControlValidationSI").is(':checked')) {
+            $("#contenedor").removeClass("d-none");
+        }
+    })
+    $("#customControlValidationNO").click(function() {
+        if ($("#customControlValidationNO").is(':checked')) {
+            $("#contenedor").addClass("d-none");
+        }
+    })
+    /*
+    document.getElementById('email').addEventListener('input', function() {
+        campo = event.target;
+        //valido = document.getElementById('emailOK');
+
+        emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        //Se muestra un texto a modo de ejemplo, luego va a ser un icono
+        if (emailRegex.test(campo.value)) {
+            campo.classList.remove("is-invalid");
+            campo.classList.add("is-valid");
+            //valido.innerText = "válido";
+        } else {
+            campo.classList.remove("is-valid");
+            campo.classList.add("is-invalid");
+            //valido.innerText = "incorrecto";
+        }
+    });
+
+
+    //VALIDACIONES
+
+    
+    */
+</script>

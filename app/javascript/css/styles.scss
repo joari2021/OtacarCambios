@@ -4,25 +4,6 @@
 
 
 /*
-body {
-  background: #12c2e9; /* fallback for old browsers */
-  /*background: -webkit-linear-gradient(
-    to right,
-    #f64f59,
-    #c471ed,
-    #12c2e9
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  /*background: linear-gradient(
-    to right,
-    #f64f59,
-    #c471ed,
-    #12c2e9
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
- /* background-size: 100% 100%;
-  background-attachment: fixed;
-}*/
-/*
 li {
   list-style: none;
 }
@@ -42,11 +23,11 @@ li {
 .margin-top {
   margin-top: 170px;
 }
-
+*/
 .field {
-  @extend .margin-tp;
+  
   label {
-    @extend .text-info;
+    @extend .text-primary;
     @extend .font-weight-bold;
   }
   &:first-of-type {
@@ -54,7 +35,7 @@ li {
   }
   input {
     @extend .form-control;
-    @extend .bg-light;
+    
   }
   input[type="checkbox"] {
     display: inline-block;
@@ -67,17 +48,9 @@ input[type="checkbox"] {
   transform: scale(1.5);
 }
 
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-#montoRecibir {
+#montoRecibir{
   background-color: #bbbfc0 !important;
 }
-
-*/
 
 :root {
   --primary: #0b254b;
@@ -87,7 +60,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 body {
-  overflow: hidden;
   font-family: 'Muli', sans-serif;
 }
 
@@ -207,4 +179,168 @@ table tbody td {
   #content-wrapper.toggled #sidebar-container {
     margin-left: -18rem;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.validar-feedback {
+    
+    font-size: 80%;
+    
+}
+.art-invalid{
+  color: #dc3545;
+  transition: all ease-in 0.3s;
+}
+.art-valid{
+  color: #28a745;
+  transition: all ease-in 0.3s;
+}
+.was-validated .form-control:valid, .was-validated .field input:valid, .field .was-validated input:valid, .form-control.is-valid, .field input.is-valid{
+  transition: all ease-in 0.5s;
+}
+.was-validated .form-control:invalid, .was-validated .field input:invalid, .field .was-validated input:invalid, .form-control.is-invalid, .field input.is-invalid {
+  transition: all ease-in 0.5s;
+}
+
+/*Estilos de Alertas*/
+#alert{
+  background: #ffdb9b;
+  padding: 20px 40px;
+  min-width: 400px;
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  overflow: hidden;
+  border-radius: 4px;
+  border-left: 8px solid #ffa502;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+#alert.showAlert{
+  opacity: 1;
+  pointer-events: auto;
+}
+#alert.show{
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0%{
+    transform: translateX(100%);
+  }
+  40%{
+    transform: translateX(-10%);
+  }
+  80%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(-10%);
+  }
+}
+#alert.hide{
+  animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+  0%{
+    transform: translateX(-10%);
+  }
+  40%{
+    transform: translateX(0%);
+  }
+  80%{
+    transform: translateX(-10%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+
+#alert .fa-exclamation-circle{
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ce8500;
+  font-size: 30px;
+}
+#alert .msg{
+  padding: 0 20px;
+  font-size: 18px;
+  color: #ce8500;
+}
+
+/*Estilos de notice*/
+
+#notice{
+  background: #afff9b;
+  padding: 20px 40px;
+  min-width: 400px;
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  overflow: hidden;
+  border-radius: 4px;
+  border-left: 8px solid #67ff02;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+#notice.showAlert{
+  opacity: 1;
+  pointer-events: auto;
+}
+#notice.show{
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0%{
+    transform: translateX(100%);
+  }
+  40%{
+    transform: translateX(-10%);
+  }
+  80%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(-10%);
+  }
+}
+#notice.hide{
+  animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+  0%{
+    transform: translateX(-10%);
+  }
+  40%{
+    transform: translateX(0%);
+  }
+  80%{
+    transform: translateX(-10%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+
+#notice .fa-check-circle{
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7fce00;
+  font-size: 30px;
+}
+#notice .msg{
+  padding: 0 20px;
+  font-size: 18px;
+  color: #7fce00;
 }

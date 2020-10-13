@@ -1,62 +1,9 @@
-<!--<nav class="navbar navbar-expand-md bg-light fixed-top">
-    <div class="container-fluid">
-        <%if user_signed_in?%>
-        <span class="navbar-brand text-primary">
-            <%if current_user.gender === "Femenino" %>Bienvenida<%else%>Bienvenido<%end%>
-            <%= current_user.name%></span>
-        <%end%>
-
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#firstNavBar">
-            <span><i class="fas fa-bars"></i></span>
-        </button>
-
-        
-        <div class="collapse navbar-collapse" id="firstNavBar">
-            <ul class="navbar-nav ml-auto">
-                <% if user_signed_in?%>
-
-                <li class="nav-item">
-                    
-                </li>
-                <li class="nav-item">
-                    
-                </li>
-                <li class="nav-item">
-                    
-                </li>
-                
-                
-
-                <% if current_user.is_admin?%>
-                <li class="nav-item">
-                    <%= link_to "Tasas", rates_path, class:"nav-link" %>
-                </li>
-                <%end%>
-            
-                <li class="nav-item">
-                   
-                </li>
-                <li class="nav-item">
-                   
-                </li>
-                <% else %>
-                <li class="nav-item">
-                    <%= link_to "Iniciar sesion", new_user_session_path, class:"nav-link" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "Registro", new_user_registration_path, class:"nav-link" %>
-                </li>
-                <% end %>
-            </ul>
-        </div>
-    </div>
-</nav>
--->
 <div id="sidebar-container" class="bg-light border-right">
     <div class="logo">
         <h4 class="font-weight-bold mb-0">Otacar Cambios</h4>
     </div>
     <div class="menu list-group-flush">
+        <%if current_user.is_normal_user?%>
         <a href="/transactions/new" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="fas fa-comments-dollar lead mr-1"></i> Enviar Dinero</a>
 
         <a href="/dhasboard" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="fas fa-calculator lead mr-2"></i> Calcular Envio</a>
@@ -70,5 +17,9 @@
 
 
         <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i> Configuración</a>
+        <%end%>
+
+        <a href="/users/sign_out" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0" rel="nofollow" data-method="delete"> <i class="far fa-arrow-alt-circle-left lead mr-2"></i>Cerrar Sesión</a>
+        
     </div>
 </div>

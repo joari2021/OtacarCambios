@@ -1,34 +1,3 @@
-<!--<div class="container center-block bg-nav">
-    <div class="margin-top pt-4 px-5 pb-2">
-        <h2 class="text-uppercase text-info font-weight-bold">Iniciar Sesion</h2>
-
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-            <%= f.label :email, "Correo Electronico" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <div class="field">
-            <%= f.label :password, "Contraseña" %><br />
-            <%= f.password_field :password, autocomplete: "current-password" %>
-        </div>
-
-        <% if devise_mapping.rememberable? %>
-        <div class="field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :remember_me, "Recuerdame" %>
-        </div>
-        <% end %>
-
-        <div class="actions">
-            <%= f.submit "Continuar", class:"btn btn-primary"%>
-        </div>
-        <% end %>
-
-        
-    </div>
-</div>
--->
 <div class="container">
 
     <div class="forms-container">
@@ -73,6 +42,11 @@
             <div class="input-field">
                 <i class="fas fa-envelope"></i>
                 <input class="" placeholder="Correo Electronico" name="user[email]" autofocus="autofocus" autocomplete="autocomplete" id="email" value="" type="email" required></input>
+            </div>
+            <div class="input-field">
+                <i class="fas fa-address-card"></i>
+
+                <input class="" placeholder="Nro Documento" name="user[document]" autocomplete="autocomplete" value="" type="number" onkeypress="return soloNumeros(event,this)" required></input>
             </div>
             <div class="input-field">
                 <i class="fas fa-lock"></i>
@@ -153,4 +127,23 @@
     sign_in_btn.addEventListener("click", () => {
         container.classList.remove("sign-up-mode");
     });
+
+    function soloNumeros(e, input) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "1234567890";
+        especiales = [];
+
+        if (letras.indexOf(tecla) == -1) {
+
+            return false;
+
+        } else {
+
+            valor = input.value.toLowerCase();
+            valor = valor.concat("", tecla);
+
+            return true;
+        }
+    }
 </script>

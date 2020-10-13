@@ -26,26 +26,50 @@
         <%if user_signed_in?%>
         <%= render "partials/nav" %>
         <%end%>
-        <% if notice && user_signed_in?%>
+        
+        <div id="page-content-wrapper" class="w-100 bg-light-blue">
+            <%if user_signed_in?%><%=render "partials/subnav"%><%end%>
 
-        <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
-            <i class="fas fa-check-circle mr-2" style="font-size:30px"></i><%= notice %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
+            <%if alert && user_signed_in?%>
+            <div id="alert" class="show showAlert">
+                <span class="fas fa-exclamation-circle"></span>
+                <span class="msg"><%=alert%></span>
+            </div>
+            <%end%>
+            <%if notice && user_signed_in?%>
+            <div id="notice" class="show showAlert">
+                <span class="fas fa-check-circle"></span>
+                <span class="msg"><%=notice%></span>
+            </div>
+            <%end%>
+            <%= yield %>
         </div>
-        <%end%>
-        <% if alert && user_signed_in?%>
-        <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
-            <i class="fas fa-exclamation-triangle mr-2" style="font-size:30px"></i><%= alert %><button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-
-        </div>
-        <%end%>
-
-        <%= yield %>
     </div>
+
+    <script>
+        <%if user_signed_in?%>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#content-wrapper").toggleClass("toggled");
+        });
+        <%end%>
+
+        <%if alert && user_signed_in?%>
+        var campoAlerta = document.getElementById("alert");
+        setTimeout(() => {
+            campoAlerta.classList.add("hide");
+            campoAlerta.classList.remove("show");
+        }, 5000);
+        <%end%>
+
+        <%if notice && user_signed_in?%>
+        var campoAlerta = document.getElementById("notice");
+        setTimeout(() => {
+            campoAlerta.classList.add("hide");
+            campoAlerta.classList.remove("show");
+        }, 5000);
+        <%end%>
+    </script>
 </body>
 
 </html>

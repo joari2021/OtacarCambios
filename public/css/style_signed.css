@@ -423,6 +423,11 @@ a{
     left: 50%;
   }
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
 
 /*Estilos de alerta*/
 
@@ -607,3 +612,5 @@ a:hover, a:focus {
 .cajaenlaces{
   background: #f0f0f0;
 }
+
+
