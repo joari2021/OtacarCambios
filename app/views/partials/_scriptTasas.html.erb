@@ -1,0 +1,89 @@
+<script>
+    var caja = function() {
+        var elementosDiv = document.getElementsByTagName("div");
+
+        for (i = 0; i < elementosDiv.length; i++) {
+            if (elementosDiv[i].className == "d-none") {
+                elementosDiv[i].className = ""
+            }
+            if (elementosDiv[i].id.toUpperCase() == input.value.toUpperCase() && input.value != "") {
+                elementosDiv[i].className = "d-none"
+            }
+        }
+
+    }
+
+    var añadirMoneda = function() {
+        elementosSpan = document.getElementsByTagName("span")
+
+        for (i = 2; i < elementosSpan.length; i += 2) {
+
+            if (monto.value > 0) {
+                elementosSpan[i].innerHTML = " " + moneda.value;
+            } else {
+                elementosSpan[i].innerHTML = "";
+            }
+        }
+    }
+
+    var añadirMonto = function() {
+        var elementosSpan = document.getElementsByTagName("span");
+        var inputs = document.getElementsByTagName("input");
+        var moneda = document.getElementById('moneda');
+
+        for (i = 1; i < elementosSpan.length; i += 2) {
+
+            if (monto.value > 0) {
+                elementosSpan[i].innerHTML = " " + monto.valueAsNumber.toFixed(2);
+                elementosSpan[i + 1].innerHTML = " " + moneda.value
+                inputs[i + 4 + <%=@digit%>].removeAttribute("disabled");
+            } else {
+                elementosSpan[i].innerHTML = "";
+                elementosSpan[i + 1].innerHTML = "";
+                inputs[i + 4 + <%=@digit%>].setAttribute("disabled", "disabled");
+            }
+        }
+    }
+
+    var input = document.getElementById('input');
+    var moneda = document.getElementById('moneda');
+    var monto = document.getElementById('montoOferta');
+
+    <%if @digit === 0%>
+    input.addEventListener("input", caja);
+    <%end%>
+    moneda.addEventListener("input", añadirMoneda);
+    monto.addEventListener("input", añadirMonto);
+
+
+    //Formateo de valor con dos decimales
+
+    var inputs = document.getElementsByTagName("input");
+    
+    function formatValor(event){
+        event.target.value = event.target.valueAsNumber.toFixed(2);
+    }
+    
+    // te aseguras que el valor inicial tiene el formato correcto
+
+    var formatvalues = function() {
+        
+        for (var i = 0; i < inputs.length; i++) {
+            if (i!= 0 && i != 0+<%=@digit%> && i != 1+<%=@digit%> && i != 2+<%=@digit%> && i != 3+<%=@digit%> && i != 22-<%=@digit%>) {
+                inputs[i].value = inputs[i].valueAsNumber.toFixed(2);
+
+                inputs[i].addEventListener('input', function(event) {
+                    event.target.value = event.target.valueAsNumber.toFixed(2);
+                });
+                
+            }
+
+        }
+        for (var i = 5+<%=@digit%>; i < inputs.length-<%=@digit%>; i += 2) {
+            if (monto.value <= 0) {
+                inputs[i].setAttribute("disabled", "disabled");
+            }
+        }
+    }
+    formatvalues();
+</script>

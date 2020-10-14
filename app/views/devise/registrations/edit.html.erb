@@ -263,13 +263,13 @@
 
     <!--Contraseña-->
     <div class="form-row field mb-1">
-        <div class="col-6 mb-2">
+        <div class="col-12 col-sm-6 mb-2">
             <%= f.label :password, "Contraseña **" %>
             <%= f.password_field :password, autocomplete: "new-password", class:"form-control is-invalid", id:"contraseña",  onkeyup:"return validarPassword(event)" %>
 
         </div>
 
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
             <%= f.label :password_confirmation, "Confirmar Contraseña **" %>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control is-invalid", id:"confirmacion-contraseña", onkeyup:"return validarPassword(event)" %>
 

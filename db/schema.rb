@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_133211) do
+ActiveRecord::Schema.define(version: 2020_10_14_142652) do
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -30,10 +30,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_133211) do
 
   create_table "rates", force: :cascade do |t|
     t.string "country"
-    t.string "moneda"
     t.integer "monto_oferta", default: 0
-    t.decimal "rate_argentina", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_argentina_min", precision: 9, scale: 2, default: "0.0"
     t.decimal "rate_brasil", precision: 9, scale: 2, default: "0.0"
     t.decimal "rate_brasil_min", precision: 9, scale: 2, default: "0.0"
     t.decimal "rate_chile", precision: 9, scale: 2, default: "0.0"
@@ -54,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_10_07_133211) do
     t.decimal "rate_venezuela_min", precision: 9, scale: 2, default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "moneda"
   end
 
   create_table "transactions", force: :cascade do |t|

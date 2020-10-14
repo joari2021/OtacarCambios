@@ -1,6 +1,6 @@
 class RatesController < ApplicationController
   before_action :set_rate, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, except: []
+  before_action :authenticate_admin!
 
   # GET /rates
   # GET /rates.json
@@ -29,7 +29,7 @@ class RatesController < ApplicationController
 
     respond_to do |format|
       if @rate.save
-        format.html { redirect_to rates_path, notice: 'Rate was successfully created.' }
+        format.html { redirect_to rates_path, notice: 'Registro de tasas creado con exito.' }
         format.json { render :show, status: :created, location: @rate }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class RatesController < ApplicationController
   def update
     respond_to do |format|
       if @rate.update(rate_params)
-        format.html { redirect_to rates_path, notice: 'Rate was successfully updated.' }
+        format.html { redirect_to rates_path, notice: 'Tasas guardadas con exito.' }
         format.json { render :show, status: :ok, location: @rate }
       else
         format.html { render :edit }
@@ -70,6 +70,6 @@ class RatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rate_params
-      params.require(:rate).permit(:country, :moneda, :monto_oferta, :rate_argentina, :rate_argentina_min, :rate_brasil, :rate_brasil_min, :rate_chile, :rate_chile_min, :rate_ecuador, :rate_ecuador_min, :rate_españa, :rate_españa_min, :rate_panama, :rate_panama_min, :rate_peru, :rate_peru_min, :rate_portugal, :rate_portugal_min, :rate_usa, :rate_usa_min, :rate_venezuela, :rate_venezuela_min) 
+      params.require(:rate).permit(:country, :moneda, :monto_oferta, :rate_brasil, :rate_brasil_min, :rate_chile, :rate_chile_min, :rate_ecuador, :rate_ecuador_min, :rate_españa, :rate_españa_min, :rate_panama, :rate_panama_min, :rate_peru, :rate_peru_min, :rate_portugal, :rate_portugal_min, :rate_usa, :rate_usa_min, :rate_venezuela, :rate_venezuela_min) 
     end
 end

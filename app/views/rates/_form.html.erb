@@ -12,39 +12,28 @@
 <% end %>
 
 <div class="row field">
+    <%if @digit === 0%>
+    <div class="col-4">
+        <%= form.label :country, "Pais", required: :required %>
+        <%= form.text_field :country, id:"input", required: :required, class:"text-capitalize" %>
+    </div>
+    <%else%>
     <div class="col-4">
         <%= form.label :country, "Pais" %>
-        <%= form.text_field :country, id:"input" %>
+        <input class="text-capitalize" id="rate_country" value="<%=rate.country%>" readonly>
     </div>
+    <%end%>
 
     <div class="col-4">
         <%= form.label :monto_oferta, "Monto Oferta" %>
-        <%= form.number_field :monto_oferta, id:"montoOferta", step: 0.01%>
+        <%= form.number_field :monto_oferta, id:"montoOferta", step: 0.01, oninput:"return formatValor(event)"%>
     </div>
 
     <div class="col-4">
-        <%= form.label :moneda, "Moneda" %>
-        <%= form.text_field :moneda, id:"moneda" %>
+        <%= form.label :moneda, "Moneda", required: :required %>
+        <%= form.text_field :moneda, id:"moneda", required: :required %>
     </div>
 </div>
-
-<%if rate.country != "Argentina"%>
-<div class="" id="Argentina">
-    <h3 class="mt-3 text-success">Argentina</h3>
-    <div class="row field">
-
-        <div class="col-6">
-            <%= form.label :rate_argentina, "Sin tasa minima" %>
-            <%= form.number_field :rate_argentina, step: 0.01, required: :required%>
-        </div>
-
-        <div class="col-6">
-            <%= form.label :rate_argentina_min, "A partir de " %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_argentina_min, step: 0.01 %>
-        </div>
-    </div>
-</div>
-<%end%>
 
 <%if rate.country != "Brasil"%>
 <div class="" id="Brasil">
@@ -54,11 +43,17 @@
         <div class="col-6">
             <%= form.label :rate_brasil, "Sin tasa minima" %>
             <%= form.number_field :rate_brasil, step: 0.01, required: :required%>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_brasil, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_brasil_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.label :rate_brasil_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => "," %> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
             <%= form.number_field :rate_brasil_min, step: 0.01 %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_brasil_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -71,11 +66,17 @@
         <div class="col-6">
             <%= form.label :rate_chile, "Sin tasa minima" %>
             <%= form.number_field :rate_chile, step: 0.01, required: :required %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_chile, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
             <%= form.label :rate_chile_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
             <%= form.number_field :rate_chile_min, step: 0.01 %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_chile_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -175,7 +176,8 @@
 
         <div class="col-6">
             <%= form.label :rate_usa, "Sin tasa minima" %>
-            <%= form.number_field :rate_usa, step: 0.01, required: :required %>
+            <%= form.number_field :rate_usa, step: 0.01, required: :required%>
+            
         </div>
 
         <div class="col-6">
@@ -204,87 +206,8 @@
 </div>
 <%end%>
 
-
-<div class="actions mt-2">
-    <%= form.submit "Guardar", class:"btn btn-primary" %>
-    <%= link_to 'Volver', rates_path, class:"btn btn-primary"%>
+<div class="actions mt-3">
+    <%= form.submit "Guardar", class:"btn btn-success" %>
+    <%= link_to 'Volver', :back, class:"btn btn-success float-right"%>
 </div>
 <% end %>
-
-<script>
-
-    var caja = function() {
-        
-        var elementosDiv = document.getElementsByTagName("div");
-
-
-        for (i = 0; i < elementosDiv.length; i++) {
-            if (elementosDiv[i].className == "d-none") {
-                elementosDiv[i].className = ""
-            }
-            if (elementosDiv[i].id == input.value && input.value != "") {
-                elementosDiv[i].className = "d-none"
-            }
-        }
-
-    }
-    var añadirMoneda = function() {
-        elementosSpan = document.getElementsByTagName("span")
-
-        for (i = 3; i < elementosSpan.length; i += 2) {
-            
-            if (monto.value > 0){
-                elementosSpan[i].innerHTML = " " + moneda.value;
-            }else{
-                elementosSpan[i].innerHTML = "";
-            }                    
-        }
-    }
-
-    var añadirMonto = function() {
-        var elementosSpan = document.getElementsByTagName("span");
-        var inputs = document.getElementsByTagName("input");
-
-        for (i = 2; i < elementosSpan.length; i += 2) {
-
-            if (monto.value > 0){
-                elementosSpan[i].innerHTML = " " + monto.valueAsNumber.toFixed(2);
-                elementosSpan[i+1].innerHTML = " " + moneda.value
-                inputs[i+4].removeAttribute("disabled");
-            }else{
-                elementosSpan[i].innerHTML = "";
-                elementosSpan[i+1].innerHTML = "";
-                inputs[i+4].setAttribute("disabled", "disabled");
-            }            
-        }
-    }
-
-    var input = document.getElementById('input');
-    var moneda = document.getElementById('moneda');
-    var monto = document.getElementById('montoOferta');
-
-    input.addEventListener("input", caja);
-    moneda.addEventListener("input", añadirMoneda);
-    monto.addEventListener("input", añadirMonto);
-
-
-    //Formateo de valor con dos decimales
-
-    var inputs = document.getElementsByTagName("input");
-
-    // te aseguras que el valor inicial tiene el formato correcto
-   
-    var formatvalues = function() {
-        for (var i = 0; i < inputs.length; i++) {
-            if (i != 0 && i != 1 && i != 2 && i != 4 && i != 23) {
-                inputs[i].value = inputs[i].valueAsNumber.toFixed(2);
-
-                inputs[i].addEventListener('input', function(event) {
-                    event.target.value = event.target.valueAsNumber.toFixed(2)
-                });
-            }
-        }
-    }
-    formatvalues();
-    
-</script>

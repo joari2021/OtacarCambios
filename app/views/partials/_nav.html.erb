@@ -19,6 +19,9 @@
         <a href="#" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i> Configuración</a>
         <%end%>
 
+        <%if current_user.is_admin?%>
+            <a href="/rates" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0"><i class="fas fa-hand-holding-usd lead mr-2"></i>Tasas</a>
+        <%end%>
         <a href="/users/sign_out" class="list-group-item list-group-item-action text-muted bg-light p-3 border-0" rel="nofollow" data-method="delete"> <i class="far fa-arrow-alt-circle-left lead mr-2"></i>Cerrar Sesión</a>
         
     </div>

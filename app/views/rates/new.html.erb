@@ -1,7 +1,9 @@
-<div class="container small-container center-block margin-top bg-nav">
+<div class="container small-container center-block">
     <div class="p-3">
-        <h1>Registrar Tasas</h1>
+        <h1 class="text-primary">Registrar Tasas</h1>
+        <%@digit = 0%>
+        <%= render 'form', rate: @rate, collection: @digit %>
 
-        <%= render 'form', rate: @rate %>
+        <%= render 'partials/scriptTasas',rate: @rate, collection: @digit%>
     </div>
 </div>

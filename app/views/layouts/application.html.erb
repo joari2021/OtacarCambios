@@ -60,6 +60,12 @@
             campoAlerta.classList.add("hide");
             campoAlerta.classList.remove("show");
         }, 5000);
+        setTimeout(() => {
+            campoAlerta.classList.remove("showAlert");
+            campoAlerta.classList.remove("hide");
+            campoAlerta.classList.add("d-none");
+        }, 6000);
+        
         <%end%>
 
         <%if notice && user_signed_in?%>
@@ -68,6 +74,11 @@
             campoAlerta.classList.add("hide");
             campoAlerta.classList.remove("show");
         }, 5000);
+        setTimeout(() => {
+            campoAlerta.classList.remove("showAlert");
+            campoAlerta.classList.remove("hide");
+            campoAlerta.classList.add("d-none");
+        }, 6000);
         <%end%>
     </script>
 </body>
