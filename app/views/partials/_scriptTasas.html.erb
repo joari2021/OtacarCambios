@@ -1,13 +1,38 @@
 <script>
+    function ems(input,num) {
+        em = document.getElementsByTagName("em")[num-4];
+        importe = input.valueAsNumber.toFixed(2);
+        regresar = importe.toString().replace(/\./g,',');
+        var num = regresar.replace(/\./g,'');
+
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/,'');
+        em.innerHTML = num;
+    }
+    function it(input){
+        it = document.getElementsByTagName("em")[0];
+        
+        importe = input.valueAsNumber.toFixed(2);
+        regresar = importe.toString().replace(/\./g,',');
+        var num = regresar.replace(/\./g,'');
+
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/,'');
+        it.innerHTML = num;
+
+    }
+
+
+
     var caja = function() {
         var elementosDiv = document.getElementsByTagName("div");
 
         for (i = 0; i < elementosDiv.length; i++) {
             if (elementosDiv[i].className == "d-none") {
-                elementosDiv[i].className = ""
+                elementosDiv[i].className = "";
             }
             if (elementosDiv[i].id.toUpperCase() == input.value.toUpperCase() && input.value != "") {
-                elementosDiv[i].className = "d-none"
+                elementosDiv[i].className = "d-none";
             }
         }
 
@@ -31,10 +56,29 @@
         var inputs = document.getElementsByTagName("input");
         var moneda = document.getElementById('moneda');
 
+        it = document.getElementsByTagName("small");
+        
+        importe = monto.valueAsNumber.toFixed(2);
+        regresar = importe.toString().replace(/\./g,',');
+        var num = regresar.replace(/\./g,'');
+
+        num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+        num = num.split('').reverse().join('').replace(/^[\.]/,'');
+        it[0].innerHTML = num;
+
         for (i = 1; i < elementosSpan.length; i += 2) {
 
             if (monto.value > 0) {
-                elementosSpan[i].innerHTML = " " + monto.valueAsNumber.toFixed(2);
+                importe = monto.valueAsNumber.toFixed(2);
+                regresar = importe.toString().replace(/\./g,',');
+                var num = regresar.replace(/\./g,'');
+
+                num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+                num = num.split('').reverse().join('').replace(/^[\.]/,'');
+                elementosSpan[i].innerHTML = " " + num;
+                
+                
+                
                 elementosSpan[i + 1].innerHTML = " " + moneda.value
                 inputs[i + 4 + <%=@digit%>].removeAttribute("disabled");
             } else {
@@ -69,8 +113,9 @@
     var formatvalues = function() {
         
         for (var i = 0; i < inputs.length; i++) {
-            if (i!= 0 && i != 0+<%=@digit%> && i != 1+<%=@digit%> && i != 2+<%=@digit%> && i != 3+<%=@digit%> && i != 22-<%=@digit%>) {
+            if (i!= 0 && i != 0+<%=@digit%> && i != 1+<%=@digit%> && i != 3+<%=@digit%> && i != 22-<%=@digit%>) {
                 inputs[i].value = inputs[i].valueAsNumber.toFixed(2);
+
 
                 inputs[i].addEventListener('input', function(event) {
                     event.target.value = event.target.valueAsNumber.toFixed(2);
@@ -86,4 +131,5 @@
         }
     }
     formatvalues();
+    
 </script>

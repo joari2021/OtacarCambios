@@ -26,12 +26,16 @@
 
     <div class="col-4">
         <%= form.label :monto_oferta, "Monto Oferta" %>
-        <%= form.number_field :monto_oferta, id:"montoOferta", step: 0.01, oninput:"return formatValor(event)"%>
+        <%= form.number_field :monto_oferta, id:"montoOferta", step: 0.01%>
+        <small class="validar-feedback text-success ml-2 font-italic">
+            <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => "," %>
+        </small>
     </div>
 
     <div class="col-4">
         <%= form.label :moneda, "Moneda", required: :required %>
         <%= form.text_field :moneda, id:"moneda", required: :required %>
+        
     </div>
 </div>
 
@@ -42,15 +46,15 @@
 
         <div class="col-6">
             <%= form.label :rate_brasil, "Sin tasa minima" %>
-            <%= form.number_field :rate_brasil, step: 0.01, required: :required%>
+            <%= form.number_field :rate_brasil, step: 0.01, required: :required, oninput:"return ems(this,4)"%>
             <em class="validar-feedback text-success ml-2">
                 <%= number_with_precision rate.rate_brasil, :precision => 2, :delimiter => ".", :separator => "," %>
             </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_brasil_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => "," %> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_brasil_min, step: 0.01 %>
+            <%= form.label :rate_brasil_min, "A partir de" %><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => "," %> <%end%></span><span class="text-primary  font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_brasil_min, step: 0.01, oninput:"return ems(this,5)" %>
             <em class="validar-feedback text-success ml-2">
                 <%= number_with_precision rate.rate_brasil_min, :precision => 2, :delimiter => ".", :separator => "," %>
             </em>
@@ -65,15 +69,15 @@
 
         <div class="col-6">
             <%= form.label :rate_chile, "Sin tasa minima" %>
-            <%= form.number_field :rate_chile, step: 0.01, required: :required %>
+            <%= form.number_field :rate_chile, step: 0.01, required: :required, oninput:"return ems(this,6)" %>
             <em class="validar-feedback text-success ml-2">
                 <%= number_with_precision rate.rate_chile, :precision => 2, :delimiter => ".", :separator => "," %>
             </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_chile_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_chile_min, step: 0.01 %>
+            <%= form.label :rate_chile_min, "A partir de" %><span class="text-primary  font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_chile_min, step: 0.01, oninput:"return ems(this,7)" %>
             <em class="validar-feedback text-success ml-2">
                 <%= number_with_precision rate.rate_chile_min, :precision => 2, :delimiter => ".", :separator => "," %>
             </em>
@@ -87,12 +91,18 @@
 
         <div class="col-6">
             <%= form.label :rate_ecuador, "Sin tasa minima" %>
-            <%= form.number_field :rate_ecuador, step: 0.01, required: :required %>
+            <%= form.number_field :rate_ecuador, step: 0.01, required: :required, oninput:"return ems(this,8)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_ecuador, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_ecuador_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_ecuador_min, step: 0.01 %>
+            <%= form.label :rate_ecuador_min, "A partir de" %><span class="text-primary  font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary  font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_ecuador_min, step: 0.01, oninput:"return ems(this,9)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_ecuador_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -104,12 +114,18 @@
 
         <div class="col-6">
             <%= form.label :rate_españa, "Sin tasa minima" %>
-            <%= form.number_field :rate_españa, step: 0.01, required: :required %>
+            <%= form.number_field :rate_españa, step: 0.01, required: :required, oninput:"return ems(this,10)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_españa, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_españa_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_españa_min, step: 0.01 %>
+            <%= form.label :rate_españa_min, "A partir de" %><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary  font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_españa_min, step: 0.01, oninput:"return ems(this,11)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_españa_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -122,12 +138,18 @@
 
         <div class="col-6">
             <%= form.label :rate_panama, "Sin tasa minima" %>
-            <%= form.number_field :rate_panama, step: 0.01, required: :required %>
+            <%= form.number_field :rate_panama, step: 0.01, required: :required, oninput:"return ems(this,12)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_panama, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_panama_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_panama_min, step: 0.01 %>
+            <%= form.label :rate_panama_min, "A partir de" %><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_panama_min, step: 0.01, oninput:"return ems(this,13)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_panama_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -140,12 +162,18 @@
 
         <div class="col-6">
             <%= form.label :rate_peru, "Sin tasa minima" %>
-            <%= form.number_field :rate_peru, step: 0.01, required: :required %>
+            <%= form.number_field :rate_peru, step: 0.01, required: :required, oninput:"return ems(this,14)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_peru, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_peru_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_peru_min, step: 0.01 %>
+            <%= form.label :rate_peru_min, "A partir de" %><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_peru_min, step: 0.01, oninput:"return ems(this,15)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_peru_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -158,12 +186,18 @@
 
         <div class="col-6">
             <%= form.label :rate_portugal, "Sin tasa minima" %>
-            <%= form.number_field :rate_portugal, step: 0.01, required: :required %>
+            <%= form.number_field :rate_portugal, step: 0.01, required: :required, oninput:"return ems(this,16)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_portugal, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_portugal_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_portugal_min, step: 0.01 %>
+            <%= form.label :rate_portugal_min, "A partir de" %><span class="text-primary  font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_portugal_min, step: 0.01, oninput:"return ems(this,17)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_portugal_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -176,13 +210,18 @@
 
         <div class="col-6">
             <%= form.label :rate_usa, "Sin tasa minima" %>
-            <%= form.number_field :rate_usa, step: 0.01, required: :required%>
-            
+            <%= form.number_field :rate_usa, step: 0.01, required: :required, oninput:"return ems(this,18)"%>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_usa, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_usa_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_usa_min, step: 0.01 %>
+            <%= form.label :rate_usa_min, "A partir de" %><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_usa_min, step: 0.01, oninput:"return ems(this,19)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_usa_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>
@@ -195,12 +234,17 @@
 
         <div class="col-6">
             <%= form.label :rate_venezuela, "Sin tasa minima" %>
-            <%= form.number_field :rate_venezuela, step: 0.01, required: :required %>
+            <%= form.number_field :rate_venezuela, step: 0.01, required: :required, oninput:"return ems(this,20)" %>
+            <em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_venezuela, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
 
         <div class="col-6">
-            <%= form.label :rate_venezuela_min, "A partir de" %><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2%> <%end%></span><span class="text-info font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
-            <%= form.number_field :rate_venezuela_min, step: 0.01 %>
+            <%= form.label :rate_venezuela_min, "A partir de" %><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%= number_with_precision rate.monto_oferta, :precision => 2, :delimiter => ".", :separator => ","%> <%end%></span><span class="text-primary font-weight-bold"><%if rate.monto_oferta > 0%> <%=rate.moneda%><%end%></span>
+            <%= form.number_field :rate_venezuela_min, step: 0.01, oninput:"return ems(this,21)" %><em class="validar-feedback text-success ml-2">
+                <%= number_with_precision rate.rate_venezuela_min, :precision => 2, :delimiter => ".", :separator => "," %>
+            </em>
         </div>
     </div>
 </div>

@@ -2,6 +2,11 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+body,
+input {
+  font-family: "Poppins", sans-serif;
+}
 
 /*
 li {
@@ -57,10 +62,6 @@ input[type="checkbox"] {
   --light: #ffffff;
   --light-blue: #F5F6FA;
   --grey: #eff2f7;
-}
-
-body {
-  font-family: 'Muli', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
