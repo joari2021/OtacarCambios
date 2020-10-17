@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_14_142652) do
+ActiveRecord::Schema.define(version: 2020_10_17_153335) do
 
   create_table "banks", force: :cascade do |t|
     t.string "name"
@@ -30,28 +30,28 @@ ActiveRecord::Schema.define(version: 2020_10_14_142652) do
 
   create_table "rates", force: :cascade do |t|
     t.string "country"
-    t.integer "monto_oferta", default: 0
-    t.decimal "rate_brasil", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_brasil_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_chile", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_chile_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_ecuador", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_ecuador_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_españa", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_españa_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_panama", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_panama_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_peru", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_peru_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_portugal", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_portugal_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_usa", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_usa_min", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_venezuela", precision: 9, scale: 2, default: "0.0"
-    t.decimal "rate_venezuela_min", precision: 9, scale: 2, default: "0.0"
+    t.string "moneda"
+    t.string "monto_oferta", default: "0,00"
+    t.string "rate_brasil", default: "0,00"
+    t.string "rate_brasil_min", default: "0,00"
+    t.string "rate_chile", default: "0,00"
+    t.string "rate_chile_min", default: "0,00"
+    t.string "rate_ecuador", default: "0,00"
+    t.string "rate_ecuador_min", default: "0,00"
+    t.string "rate_españa", default: "0,00"
+    t.string "rate_españa_min", default: "0,00"
+    t.string "rate_panama", default: "0,00"
+    t.string "rate_panama_min", default: "0,00"
+    t.string "rate_peru", default: "0,00"
+    t.string "rate_peru_min", default: "0,00"
+    t.string "rate_portugal", default: "0,00"
+    t.string "rate_portugal_min", default: "0,00"
+    t.string "rate_usa", default: "0,00"
+    t.string "rate_usa_min", default: "0,00"
+    t.string "rate_venezuela", default: "0,00"
+    t.string "rate_venezuela_min", default: "0,00"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "moneda"
   end
 
   create_table "transactions", force: :cascade do |t|
