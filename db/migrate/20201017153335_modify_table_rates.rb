@@ -1,6 +1,6 @@
 class ModifyTableRates < ActiveRecord::Migration[6.0]
   def change
-    #drop_table :rates
+    drop_table :rates
 
     create_table :rates do |t|
       t.string :country
