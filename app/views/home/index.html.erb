@@ -43,9 +43,9 @@
         <label class="mt-2" for="pais">Enviar a: </label>
 
     </div>
-    <div class="col-6">
+    <div class="col-6 was-validated">
         <div class="px-2">
-            <select class="custom-select" id="pais" onchange=''>
+            <select class="custom-select" id="pais" required>
                 <option selected disabled value="">Elige un Pais...</option>
                 <%@rates.each do |rate|%>
                 <%if rate.country === current_user.country%>
@@ -66,35 +66,135 @@
     </div>
 </div>
 
-<div class="mt-5">
-    <div class="row field m-auto text-center">
-        <div class="col-6">
-            <label>Monto a enviar</label>
-            <input type="text" id="montoEnvio" value="0,00" oninput="return inputNumber(event)">
-        </div>
-        <div class="col-6">
-            <label>Monto a recibir</label>
-            <input type="text" id="montoRecibir" value="" disabled>
-        </div>
+<div class="accordion mt-4" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h6 class="mb-0 text-center">
+        <a class="text-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Calcular monto a recibir
+        </a>
+      </h6>
     </div>
-</div>
 
-<div class="field mt-5 text-center">
-    <button class="btn btn-success mb-3" id="botonC">Calcular</button>
-    <button class="btn btn-danger mb-3 ml-3" id="boton">Borrar</button>
-</div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="mt-5">
+            <div class="row field m-auto text-center">
+                <div class="col-6">
+                    <label>Monto a enviar</label>
+                    <input type="text" class="text-center" id="montoEnvio" value="0,00" oninput="return inputNumber(event)">
+                </div>
+                <div class="col-6">
+                    <label>Monto a recibir</label>
+                    <input type="text" class="text-center" id="montoRecibir" value="" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="field mt-5 text-center">
+            <button class="btn btn-success mb-3" id="botonC">Calcular</button>
+            <button class="btn btn-danger mb-3 ml-3" id="boton">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h6 class="mb-0 text-center">
+        <a class="text-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Calcular monto a enviar
+        </a>
+      </h6>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+        <div class="mt-5">
+            <div class="row field m-auto text-center">
+                <div class="col-6">
+                    <label>Monto a recibir</label>
+                    <input type="text" class="text-center" id="montoRecibir2" value="0,00" oninput="return inputNumber(event)">
+                </div>
+                <div class="col-6">
+                    <label>Monto a enviar</label>
+                    <input type="text" class="text-center" id="montoEnvio2" value="" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="field mt-5 text-center">
+            <button class="btn btn-success mb-3" id="botonC2">Calcular</button>
+            <button class="btn btn-danger mb-3 ml-3" id="botonB2">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
 
     
 <script src="/js/vistas/campos-numericos-format.js"></script>
 <script>
     var pais = document.querySelector('#pais'),
         botonB = document.querySelector('#boton'),
+        botonB2 = document.querySelector('#botonB2'),
         botonC = document.querySelector('#botonC'),
+        botonC2 = document.querySelector('#botonC2'),
         montoEnvio = document.querySelector('#montoEnvio'),
-        montoRecibir = document.querySelector('#montoRecibir');
+        montoEnvio2 = document.querySelector('#montoEnvio2'),
+        montoRecibir = document.querySelector('#montoRecibir'),
+        montoRecibir2 = document.querySelector('#montoRecibir2');
 
     //Funciones
-    var setMontoToRecibir = function () {
+    var convertAmount = function (montoOferta,tasa,tasaOferta,monedaE,monedaR) {
+        
+            //Formatear Monto de Envio
+            valor = montoEnvio.value.replace(/\D/g, "");                
+            valor = valor.replace(/([0-9])([0-9]{2})$/, '$1.$2');
+            montoE = parseFloat(valor);
+        
+            
+        
+
+        //Formatear Monto de Oferta
+        montoOf = montoOferta.replace(/\D/g, "");                
+        montoOf = montoOf.replace(/([0-9])([0-9]{2})$/, '$1.$2');
+        montoOf = parseFloat(montoOf);
+
+        //Formatear Tasa
+        tasa = tasa.replace(/\D/g, "");                
+        tasa = tasa.replace(/([0-9])([0-9]{2})$/, '$1.$2');
+        tasa = parseFloat(tasa);
+
+        //Formatear Tasa Oferta
+        tasaO = tasaOferta.replace(/\D/g, "");                
+        tasaO = tasaO.replace(/([0-9])([0-9]{2})$/, '$1.$2');
+        tasaO = parseFloat(tasaO);
+
+        if(montoE < montoOf){
+            var  monto_tasa = tasa;
+        }else{
+            var  monto_tasa = tasaO;
+        }
+        
+        var resultado = montoE * monto_tasa;
+        resultado = resultado.toFixed(2);
+        resultado = resultado.replace(/\D/g, "");
+        resultado = resultado.replace(/([0-9])([0-9]{2})$/, '$1,$2');
+        resultado = resultado.replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
+
+        monedaE = " ".concat(monedaE);
+        monedaR = " ".concat(monedaR);
+
+        montoEnvio.value = montoEnvio.value.concat(monedaE);
+        montoRecibir.value = resultado.concat(monedaR);
+
+        if (montoRecibir.value == "NaN"){
+            montoRecibir.value = "Monto a enviar invalido";
+        }
+
+    }
+
+    var setCalculate = function (objetivo) {
+        
         <% @rates.each do |rate| %>
 
         <%if current_user.country === rate.country%>
@@ -103,33 +203,105 @@
             
             <%if current_user.country != "Brasil"%>
             case "Brasil":
-                var montoE = parseFloat(montoEnvio.value);
-                var valorO = "<%=rate.monto_oferta%>";
+                console.log(objetivo);
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_brasil%>","<%=rate.rate_brasil_min%>","<%=rate.moneda%>","R$");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Chile"%>
+            case "Chile":
                 
-                console.log(valorO.replace(".",""));
-                var montoOferta = parseFloat(valorO);
-                console.log(montoOferta);
-               
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_chile%>","<%=rate.rate_chile_min%>","<%=rate.moneda%>","CLP");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Ecuador"%>
+            case "Ecuador":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_ecuador%>","<%=rate.rate_ecuador_min%>","<%=rate.moneda%>","$");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "España"%>
+            case "España":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_españa%>","<%=rate.rate_españa_min%>","<%=rate.moneda%>","€");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Panama"%>
+            case "Panama":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_panama%>","<%=rate.rate_panama_min%>","<%=rate.moneda%>","$");
+                              
                 break;
             <%end%>
             
+            <%if current_user.country != "Peru"%>
+            case "Peru":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_peru%>","<%=rate.rate_peru_min%>","<%=rate.moneda%>","S/");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Portugal"%>
+            case "Portugal":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_portugal%>","<%=rate.rate_portugal_min%>","<%=rate.moneda%>","€");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "USA"%>
+            case "USA":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_usa%>","<%=rate.rate_usa_min%>","<%=rate.moneda%>","$");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Venezuela"%>
+            case "Venezuela":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_venezuela%>","<%=rate.rate_venezuela_min%>","<%=rate.moneda%>","Bs");
+                              
+                break;
+            <%end%>
+
+            default:
+                
+                montoRecibir.value = "";                
+                break;
+            
         }
-         <%end%>
+        <%end%>
         <%end%>
     }; 
 
-    pais.addEventListener('change', setMontoToRecibir);
+    
 
     montoEnvio.addEventListener("focus", function () {
          montoRecibir.value = "";
+         montoEnvio.value = "0,00";
     });
-
-    botonC.addEventListener('click', setMontoToRecibir);
-
+    var objetivo = "enviar"
+    botonC.addEventListener('click', setCalculate(objetivo));
+    //botonC2.addEventListener('click', setCalculate("recibir"));
     botonB.addEventListener('click', function() {
         pais.value = "";
-        montoEnvio.value = "";
+        montoEnvio.value = "0,00";
         montoRecibir.value = "";
+
+    });
+    botonB2.addEventListener('click', function() {
+        pais.value = "";
+        montoEnvio2.value = "";
+        montoRecibir2.value = "0,00";
 
     });
 
