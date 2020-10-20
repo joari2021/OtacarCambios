@@ -193,7 +193,7 @@
 
     }
 
-    var setCalculate = function (objetivo) {
+    var setCalculateMontoEnviar = function () {
         
         <% @rates.each do |rate| %>
 
@@ -203,7 +203,7 @@
             
             <%if current_user.country != "Brasil"%>
             case "Brasil":
-                console.log(objetivo);
+                
                 convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_brasil%>","<%=rate.rate_brasil_min%>","<%=rate.moneda%>","R$");
                               
                 break;
@@ -281,17 +281,107 @@
         }
         <%end%>
         <%end%>
-    }; 
+    };
 
-    
+
+    //Adaptar
+    var setCalculateMontoRecibir = function () {
+        
+        <% @rates.each do |rate| %>
+
+        <%if current_user.country === rate.country%>
+        var paisV = pais.value
+        switch (paisV) {
+            
+            <%if current_user.country != "Brasil"%>
+            case "Brasil":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_brasil%>","<%=rate.rate_brasil_min%>","<%=rate.moneda%>","R$");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Chile"%>
+            case "Chile":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_chile%>","<%=rate.rate_chile_min%>","<%=rate.moneda%>","CLP");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Ecuador"%>
+            case "Ecuador":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_ecuador%>","<%=rate.rate_ecuador_min%>","<%=rate.moneda%>","$");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "España"%>
+            case "España":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_españa%>","<%=rate.rate_españa_min%>","<%=rate.moneda%>","€");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Panama"%>
+            case "Panama":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_panama%>","<%=rate.rate_panama_min%>","<%=rate.moneda%>","$");
+                              
+                break;
+            <%end%>
+            
+            <%if current_user.country != "Peru"%>
+            case "Peru":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_peru%>","<%=rate.rate_peru_min%>","<%=rate.moneda%>","S/");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Portugal"%>
+            case "Portugal":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_portugal%>","<%=rate.rate_portugal_min%>","<%=rate.moneda%>","€");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "USA"%>
+            case "USA":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_usa%>","<%=rate.rate_usa_min%>","<%=rate.moneda%>","$");
+                              
+                break;
+            <%end%>
+
+            <%if current_user.country != "Venezuela"%>
+            case "Venezuela":
+                
+                convertAmount("<%=rate.monto_oferta%>","<%=rate.rate_venezuela%>","<%=rate.rate_venezuela_min%>","<%=rate.moneda%>","Bs");
+                              
+                break;
+            <%end%>
+
+            default:
+                
+                montoRecibir.value = "";                
+                break;
+            
+        }
+        <%end%>
+        <%end%>
+    };  
 
     montoEnvio.addEventListener("focus", function () {
          montoRecibir.value = "";
          montoEnvio.value = "0,00";
     });
-    var objetivo = "enviar"
-    botonC.addEventListener('click', setCalculate(objetivo));
-    //botonC2.addEventListener('click', setCalculate("recibir"));
+    
+    botonC.addEventListener('click', setCalculateMontoEnviar);
+    botonC2.addEventListener('click', setCalculateMontoRecibir);
     botonB.addEventListener('click', function() {
         pais.value = "";
         montoEnvio.value = "0,00";
