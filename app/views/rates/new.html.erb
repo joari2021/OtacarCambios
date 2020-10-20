@@ -1,9 +1,6 @@
-<div class="container small-container center-block">
-    <div class="p-3">
-        <h1 class="text-primary">Registrar Tasas</h1>
-        <%@digit = 0%>
-        <%= render 'form', rate: @rate, collection: @digit %>
+<h3 class="text-primary mb-4">Registrar Tasas</h3>
+<%@digit = 3%>
+<%@vista = "new"%>
+<%= render 'form', rate: @rate, collection: @digit %>
 
-        <%= render 'partials/scriptTasas',rate: @rate, collection: @digit%>
-    </div>
-</div>
+<%= render 'partials/scriptTasas',rate: @rate, collection: @digit, collection: @vista%>

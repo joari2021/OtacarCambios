@@ -42,7 +42,12 @@
                 <span class="msg"><%=notice%></span>
             </div>
             <%end%>
-            <%= yield %>
+            <div id="content" class="bg-grey w-100">
+                <div class="pt-4 px-3 pb-5">
+                    <%= yield %>
+                </div>
+            </div>
+            
         </div>
     </div>
 
@@ -60,11 +65,7 @@
             campoAlerta.classList.add("hide");
             campoAlerta.classList.remove("show");
         }, 5000);
-        setTimeout(() => {
-            campoAlerta.classList.remove("showAlert");
-            campoAlerta.classList.remove("hide");
-            campoAlerta.classList.add("d-none");
-        }, 6000);
+        
         
         <%end%>
 

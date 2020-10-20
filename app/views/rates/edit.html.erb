@@ -1,9 +1,5 @@
-<div class="container small-container center-block">
-    <div class="p-3">
-        <h1 class="text-primary">Editar Tasa</h1>     
-        <%@digit = 1%>
-        <%= render 'form', rate: @rate, collection: @digit %>
-    
-        <%= render 'partials/scriptTasas',rate: @rate, collection: @digit%>
-    </div>
-</div>
+<h1 class="text-primary">Editar Tasa</h1>
+<%@digit = 5%>
+<%= render 'form', rate: @rate, collection: @digit %>
+
+<%= render 'partials/scriptTasas',rate: @rate, collection: @digit%>

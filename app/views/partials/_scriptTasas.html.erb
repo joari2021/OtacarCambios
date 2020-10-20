@@ -32,14 +32,53 @@
             if (elementosDiv[i].className == "d-none") {
                 elementosDiv[i].className = "";
             }
-            if (elementosDiv[i].id.toUpperCase() == input.value.toUpperCase() && input.value != "") {
+            if (elementosDiv[i].id.toUpperCase() == country.value.toUpperCase() && country.value != "") {
                 elementosDiv[i].className = "d-none";
             }
         }
+        switch (country.value) {
+            
+            case "Brasil":
+                moneda.value = "R$";
+                break;
 
-    }
+            case "Chile":
+                moneda.value = "CLP";
+                break;
+            
+            case "Ecuador":
+                moneda.value = "$";
+                break;
+            
+            case "España":
+                moneda.value = "€";
+                break;
 
-    var añadirMoneda = function() {
+            case "Panama":
+                moneda.value = "$";
+                break;
+
+            case "Peru":
+                moneda.value = "S/";
+                break;
+            
+            case "Portugal":
+                moneda.value = "€";
+                break;
+
+            case "USA":
+                moneda.value = "$";
+                break;
+
+            case "Venezuela":
+                moneda.value = "Bs";
+                break;
+            
+            default:
+                moneda.value = "";
+                break;
+            
+        }
         elementosSpan = document.getElementsByTagName("span")
 
         for (i = 2; i < elementosSpan.length; i += 2) {
@@ -49,7 +88,8 @@
             } else {
                 elementosSpan[i].innerHTML = "";
             }
-        }
+        }    
+
     }
 
     var modificarSpanAndReturn = function (span,resultado,monedaV) {
@@ -57,7 +97,7 @@
         for (i = 1; i < span.length; i += 2){
             span[i].innerHTML = " " + resultado;
             span[i + 1].innerHTML = " " + monedaV
-            inputs[i + 4 + <%=@digit%>].removeAttribute("disabled");
+            inputs[i + <%=@digit%>].removeAttribute("disabled");
         }   
     }
 
@@ -136,21 +176,20 @@
                 for (i = 1; i < elementosSpan.length; i += 2){
                     elementosSpan[i].innerHTML = "";
                     elementosSpan[i + 1].innerHTML = "";
-                    inputs[i + 4 + <%=@digit%>].setAttribute("disabled", "disabled");
+                    inputs[i + <%=@digit%>].setAttribute("disabled", "disabled");
                 }
                 monto.value = "0,00";
             }
         
     }
 
-    var input = document.getElementById('input');
+    var country = document.getElementById('rate_country');
     var moneda = document.getElementById('moneda');
     var monto = document.getElementById('montoOferta');
 
-    <%if @digit === 0%>
-    input.addEventListener("input", caja);
+    <%if @vista === "new"%>
+    country.addEventListener("change", caja);
     <%end%>
-    moneda.addEventListener("input", añadirMoneda);
     monto.addEventListener("input", añadirMonto);
 
     function disabledCamposPriceMin() {
@@ -161,7 +200,7 @@
             if (monto.value == "0,00"){
                 elementosSpan[i].innerHTML = "";
                 elementosSpan[i + 1].innerHTML = "";
-                inputs[i + 4 + <%=@digit%>].setAttribute("disabled", "disabled");
+                inputs[i + <%=@digit%>].setAttribute("disabled", "disabled");
             }
         }        
     }
