@@ -13,14 +13,15 @@ function validarInput(e, input) {
 function address(e, input) {
   key = e.keyCode || e.which;
   tecla = String.fromCharCode(key).toLowerCase();
-
   valor = input.value.toLowerCase();
-  valor = valor.concat("", tecla);
+  
+  valor = valor.concat(tecla);
+  
 
   if (valor.trim() != "") {
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
-    input.value = input.value.concat(e.value);
+    input.value = input.value.concat(key);
 
     return true;
   } else if (valor.trim() != " ") {

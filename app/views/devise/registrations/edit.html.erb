@@ -242,7 +242,7 @@
 
 <!--Direccion-->
 <div class="field mb-3">
-    <label for="validationAddress">Dirección Probar*</label>
+    <label for="validationAddress">Dirección Probar2*</label>
     <input type="text" class="form-control text-capitalize <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationAddress" name="user[address]" maxlength="30" onkeypress="return address(event,this)" onkeyup="return validarInput(event,this)" value="<%=current_user.address%>" required>
 
     <div class="invalid-feedback">
