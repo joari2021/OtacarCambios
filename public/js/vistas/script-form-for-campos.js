@@ -15,14 +15,12 @@ function address(input, elEvento) {
   key = e.keyCode || e.which;
   tecla = String.fromCharCode(key).toLowerCase();
   valor = input.value.toLowerCase();
-  
+
   valor = valor.concat(tecla);
-  
 
   if (valor.trim() != "") {
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
-    
 
     return true;
   } else if (valor.trim() != " ") {
@@ -121,25 +119,37 @@ function validarCurrentPassword(e, input) {
   }
 }
 
-function soloLetras(e, input) {
-  key = e.keyCode || e.which;
-  tecla = String.fromCharCode(key).toLowerCase();
-  letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
-  //especiales = [8, 46, 32];
+function soloLetras(input) {
+  if (input.value != "") {
+    lastLetra = input.value[input.value.length - 1].toLowerCase();
+    letras = "áéíóúabcdefghijklmnñopqrstuvwxyz";
+    if (letras.indexOf(lastLetra) == -1) {
+      input.value = input.value.slice(0, input.value.length - 1);
+      return false;
+    } else {
+      valor = input.value.toLowerCase();
+      valor = valor.concat("", lastLetra);
 
-  if (letras.indexOf(tecla) == -1) {
-    return false;
-  } else {
-    valor = input.value.toLowerCase();
-    valor = valor.concat("", tecla);
+      if (valor != "") {
+        input.classList.remove("is-invalid");
+        input.classList.add("is-valid");
+      }
 
-    if (valor != "") {
-      input.classList.remove("is-invalid");
-      input.classList.add("is-valid");
+      return true;
     }
-
-    return true;
+  } else {
+    input.classList.remove("is-valid");
+    input.classList.add("is-invalid");
   }
+
+  /*
+    valor2 = input.value.toLowerCase();
+
+    if (valor2.trim() === "" || valor2.trim() === " ") {
+      input.classList.remove("is-valid");
+      input.classList.add("is-invalid");
+    }
+    */
 }
 
 function soloNumeros(e, input) {

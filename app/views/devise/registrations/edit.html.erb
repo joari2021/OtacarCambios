@@ -27,9 +27,9 @@
 <!--Nombres y Apellidos-->
 <div class="form-row field mb-3">
     <div class="col-6 col-md-3 mb-2">
-        <label for="validationFirstName">Primer Nombre *</label>
+        <label for="validationFirstName">Primer Nombre Probar*</label>
         <%unless current_user.is_normal_user?%>
-        <input type="text" class="form-control text-capitalize is-invalid" id="validationFirstName" name="user[name]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" autofocus="autofocus" maxlength="15" required>
+        <input type="text" class="form-control text-capitalize is-invalid" id="validationFirstName" name="user[name]" oninput="return soloLetras(this)" autofocus="autofocus" maxlength="15" required>
         <div class="invalid-feedback">
             Ingrese solo letras
         </div>
