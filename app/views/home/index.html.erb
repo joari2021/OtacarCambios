@@ -185,6 +185,7 @@
 
             montoEnvio.value = montoEnvio.value.concat(monedaE);
             montoRecibir.value = resultado.concat(monedaR);
+            botonC.setAttribute("disabled","disabled");
 
             if (montoRecibir.value == "NaN"){
                 montoRecibir.value = "Monto a enviar invalido";
@@ -196,7 +197,7 @@
             montoR = parseFloat(valor);
 
             var montoE = montoR / tasa;
-            console.log(montoE);
+    
             if(montoE < montoOf){
                 var  monto_tasa = tasa;
             }else{
@@ -211,14 +212,12 @@
 
             montoEnvio2.value = resultado.concat(monedaE);
             montoRecibir2.value = montoRecibir2.value.concat(monedaR);
+            botonC2.setAttribute("disabled","disabled");
 
             if (montoEnvio2.value == "NaN"){
                 montoEnvio2.value = "Monto a enviar invalido";
             }
-        }
-
-        
-
+        }        
     }
 
     var setCalculateMontoEnviar = function () {
@@ -405,6 +404,13 @@
     montoEnvio.addEventListener("focus", function () {
          montoRecibir.value = "";
          montoEnvio.value = "0,00";
+         botonC.removeAttribute("disabled");
+    });
+
+    montoRecibir2.addEventListener("focus", function () {
+         montoRecibir2.value = "0,00";
+         montoEnvio2.value = "";
+         botonC2.removeAttribute("disabled");
     });
     
     botonC.addEventListener('click', setCalculateMontoEnviar);
@@ -413,13 +419,14 @@
         pais.value = "";
         montoEnvio.value = "0,00";
         montoRecibir.value = "";
+        botonC.removeAttribute("disabled");
 
     });
     botonB2.addEventListener('click', function() {
         pais.value = "";
         montoEnvio2.value = "";
         montoRecibir2.value = "0,00";
-
+        botonC2.removeAttribute("disabled");
     });
 
     function format(input) {

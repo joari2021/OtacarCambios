@@ -20,7 +20,7 @@
         <div class="col-6 mb-2">
             <label for="validationName">Primer Nombre *</label>
 
-            <input type="text" class="form-control text-capitalize is-invalid" id="validationName" name="bank[name]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" autofocus="autofocus" maxlength="12" required>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationName" name="bank[name]" oninput="return soloLetras(this)" autofocus="autofocus" maxlength="12" required>
             <div class="invalid-feedback">
                 Ingrese solo letras
             </div>
@@ -29,7 +29,7 @@
         <div class="col-6 mb-2">
             <label for="validationLastName">Primer Apellido *</label>
 
-            <input type="text" class="form-control text-capitalize is-invalid" id="validationLastName" name="bank[last_name]" maxlength="12" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationLastName" name="bank[last_name]" maxlength="12" oninput="return soloLetras(this)" required>
             <div class="invalid-feedback">
                 Ingrese solo letras
             </div>
@@ -40,7 +40,7 @@
     <div class="form-row field mb-3">
         <div class="col-12 col-md-4 mb-2">
             <label for="validationDNI">Nro DNI *</label>
-            <input class="form-control is-invalid" id="validationDNI" type="number" maxlength="12" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="bank[identidy]" required></input>
+            <input class="form-control is-invalid" id="validationDNI" type="number" maxlength="12" oninput="return soloNumeros(this)" name="bank[identidy]" required></input>
             <div class="invalid-feedback">
                 Ingrese solo numeros
             </div>
@@ -66,7 +66,7 @@
 
         <div class="col-6 col-md-4 mb-2">
             <label for="validationState">Estado</label>
-            <input type="text" class="form-control is-invalid text-capitalize" id="validationState" name="bank[state]" maxlength="12" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)">
+            <input type="text" class="form-control is-invalid text-capitalize" id="validationState" name="bank[state]" maxlength="12" oninput="return soloLetras(this)">
             <div class="invalid-feedback">
                 Ingrese solo letras
             </div>
