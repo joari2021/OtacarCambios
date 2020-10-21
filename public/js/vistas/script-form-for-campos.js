@@ -20,6 +20,7 @@ function address(e, input) {
   if (valor.trim() != "") {
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
+    input.value = input.value.concat(tecla);
 
     return true;
   } else if (valor.trim() != " ") {
@@ -29,7 +30,6 @@ function address(e, input) {
 
 function validarPassword(e) {
   key = e.keyCode || e.which;
-  tecla = String.fromCharCode(key).toLowerCase();
 
   password = document.getElementById("contraseña");
   confirmacionPassword = document.getElementById("confirmacion-contraseña");
@@ -101,7 +101,6 @@ function validarPassword(e) {
 
 function validarCurrentPassword(e, input) {
   key = e.keyCode || e.which;
-  tecla = String.fromCharCode(key).toLowerCase();
 
   password = input.value.toLowerCase();
 
