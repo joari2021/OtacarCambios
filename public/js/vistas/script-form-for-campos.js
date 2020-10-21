@@ -21,7 +21,7 @@ function address(e, input) {
   if (valor.trim() != "") {
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
-    input.value = input.value.concat(key);
+    input.value = document.write(key);
 
     return true;
   } else if (valor.trim() != " ") {
