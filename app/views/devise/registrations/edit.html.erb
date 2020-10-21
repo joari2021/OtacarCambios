@@ -81,7 +81,7 @@
     <div class="col-7 col-md-4 mb-2">
         <label for="validationDNI">DNI *</label>
         <input class="form-control text-capitalize" value="<%=current_user.document%>" readonly>
-        
+
     </div>
 
     <div class="col-5 col-md-3 mb-2">
@@ -345,3 +345,15 @@
 <% end %>
 
 <script src="/js/vistas/script-form-for-campos.js"></script>
+<script>
+    $("#customControlValidationSI").click(function() {
+        if ($("#customControlValidationSI").is(":checked")) {
+            $("#contenedor").removeClass("d-none");
+        }
+    });
+    $("#customControlValidationNO").click(function() {
+        if ($("#customControlValidationNO").is(":checked")) {
+            $("#contenedor").addClass("d-none");
+        }
+    });
+</script>

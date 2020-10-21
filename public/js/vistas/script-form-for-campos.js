@@ -192,16 +192,6 @@ function validarSelect(x) {
     */
 }
 
-$("#customControlValidationSI").click(function () {
-  if ($("#customControlValidationSI").is(":checked")) {
-    $("#contenedor").removeClass("d-none");
-  }
-});
-$("#customControlValidationNO").click(function () {
-  if ($("#customControlValidationNO").is(":checked")) {
-    $("#contenedor").addClass("d-none");
-  }
-});
 /*
 document.getElementById('email').addEventListener('input', function() {
     campo = event.target;
