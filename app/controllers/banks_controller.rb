@@ -1,5 +1,6 @@
 class BanksController < ApplicationController
   before_action :set_bank, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:edit, :update]
 
   # GET /banks
   # GET /banks.json
@@ -28,7 +29,7 @@ class BanksController < ApplicationController
 
     respond_to do |format|
       if @bank.save
-        format.html { redirect_to banks_path, notice: 'Bank was successfully created.' }
+        format.html { redirect_to banks_path, notice: 'Cuenta registrada con exito.' }
         format.json { render :show, status: :created, location: @bank }
       else
         format.html { render :new }
@@ -56,7 +57,7 @@ class BanksController < ApplicationController
   def destroy
     @bank.destroy
     respond_to do |format|
-      format.html { redirect_to banks_url, notice: 'Bank was successfully destroyed.' }
+      format.html { redirect_to banks_url, notice: 'Cuenta eliminada con exito.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +70,6 @@ class BanksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bank_params
-      params.require(:bank).permit(:name, :identidy, :country, :state, :bank, :number_account, :type_account, :cod_bank, :phone)
+      params.require(:bank).permit(:name, :last_name, :identidy, :country, :state, :bank, :number_account, :type_account, :cod_bank, :phone)
     end
 end

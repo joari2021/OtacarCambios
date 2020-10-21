@@ -1,67 +1,124 @@
 <div class="mt-5">
-<%= form_with(model: bank, local: true) do |form| %>
-  <% if bank.errors.any? %>
+    <%= form_with(model: bank, local: true) do |form| %>
+    <% if bank.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(bank.errors.count, "error") %> prohibited this bank from being saved:</h2>
+        <h2><%= pluralize(bank.errors.count, "error") %> impide(n) que esta cuenta sea guardada:</h2>
 
-      <ul>
-        <% bank.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+        <ul>
+            <% bank.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
     </div>
-  <% end %>
+    <% end %>
+    <div class="field">
+        <h6>* : Campos Obligatorios</h6>
+    </div>
 
-  <div class="field">
-    <%= form.label :name, "Nombre Completo" %>
-    <%= form.text_field :name %>
-  </div>
+    <!--Nombre y Apellido-->
+    <div class="form-row field my-3">
+        <div class="col-6 mb-2">
+            <label for="validationName">Primer Nombre *</label>
 
-  <div class="field">
-    <%= form.label :identidy, "Identidad" %>
-    <%= form.text_field :identidy %>
-  </div>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationName" name="bank[name]" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" autofocus="autofocus" maxlength="12" required>
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :country, "Pais" %>
-    <%= form.text_field :country %>
-  </div>
+        <div class="col-6 mb-2">
+            <label for="validationLastName">Primer Apellido *</label>
 
-  <div class="field">
-    <%= form.label :state, "Estado" %>
-    <%= form.text_field :state %>
-  </div>
+            <input type="text" class="form-control text-capitalize is-invalid" id="validationLastName" name="bank[last_name]" maxlength="12" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+        </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :bank, "Nombre del Banco" %>
-    <%= form.text_field :bank %>
-  </div>
+    <!--DNI, Pais y Estado-->
+    <div class="form-row field mb-3">
+        <div class="col-12 col-md-4 mb-2">
+            <label for="validationDNI">Nro DNI *</label>
+            <input class="form-control is-invalid" id="validationDNI" type="number" maxlength="12" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="bank[identidy]" required></input>
+            <div class="invalid-feedback">
+                Ingrese solo numeros
+            </div>
+        </div>
 
-  <div class="field">
-    <%= form.label :number_account, "Numero de Cuenta" %>
-    <%= form.text_field :number_account %>
-  </div>
+        <div class="col-6 col-md-4 mb-2">
+            <label>Pais *</label>
 
-  <div class="field">
-    <%= form.label :type_account, "Tipo de Cuenta" %>
-    <%= form.text_field :type_account %>
-  </div>
+            <select class="custom-select is-invalid" name="bank[country]" onChange="validarSelect(this)" required>
+                <option selected disabled value="">Elegir...</option>
+                <%if current_user.country.capitalize != "Brasil"%><option value="Brasil">Brasil</option><%end%>
+                <%if current_user.country.capitalize != "Chile"%><option value="Chile">Chile</option><%end%>
+                <%if current_user.country.capitalize != "Ecuador"%><option value="Ecuador">Ecuador</option><%end%>
+                <%if current_user.country.capitalize != "España"%><option value="España">España</option><%end%>
+                <%if current_user.country.capitalize != "Panama"%><option value="Panama">Panama</option><%end%>
+                <%if current_user.country.capitalize != "Peru"%><option value="Peru">Perú</option><%end%>
+                <%if current_user.country.capitalize != "Portugal"%><option value="Portugal">Portugal</option><%end%>
+                <%if current_user.country.capitalize != "Usa"%><option value="USA">USA</option><%end%>
+                <%if current_user.country.capitalize != "Venezuela"%><option value="Venezuela">Venezuela</option><%end%>
+            </select>
+            <div class="invalid-feedback">Elige una opcion</div>
+        </div>
 
-  <div class="field">
-    <%= form.label :cod_bank, "Codigo del Banco" %>
-    <%= form.text_field :cod_bank %>
-  </div>
+        <div class="col-6 col-md-4 mb-2">
+            <label for="validationState">Estado</label>
+            <input type="text" class="form-control is-invalid text-capitalize" id="validationState" name="bank[state]" maxlength="12" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)">
+            <div class="invalid-feedback">
+                Ingrese solo letras
+            </div>
+        </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :phone, "Nro de telefono (Registre el asociado a su pago movil)" %>
-    <%= form.text_field :phone %>
-  </div>
+    <!--Banco-->
+    <div class="form-row field mb-3">
 
-  <div class="actions">
-    <%= form.submit "Guardar", class:"btn btn-primary mt-3" %>
-     <%= link_to 'Volver', banks_path, class:"btn btn-primary mt-3 text-right " %>
-  </div>
-   
+        <div class="col-6 mb-2">
+            <label>Banco *</label>
 
-<% end %>
+            <select class="custom-select is-invalid" name="bank[bank]" onChange="validarSelect(this)" required>
+                <option selected disabled value="">Elegir...</option>
+                <option value="Venezuela">Banco De Venezuela</option>
+                <option value="B.O.D">B.O.D</option>
+            </select>
+            <div class="invalid-feedback">Elige una opcion</div>
+        </div>
+
+        <div class="col-6 mb-2">
+            <label>Tipo de cuenta *</label>
+
+            <select class="custom-select is-invalid" name="bank[type_account]" onChange="validarSelect(this)" required>
+                <option selected disabled value="">Elegir...</option>
+                <option value="Ahorro">Ahorro</option>
+                <option value="Corriente">Corriente</option>
+            </select>
+            <div class="invalid-feedback">Elige una opcion</div>
+        </div>
+    </div>
+
+    <div class="field">
+        <%= form.label :number_account, "Numero de Cuenta *" %>
+        <%= form.text_field :number_account %>
+    </div>
+
+    <div class="field">
+        <%= form.label :cod_bank, "Codigo del Banco *" %>
+        <%= form.text_field :cod_bank %>
+    </div>
+
+    <div class="field">
+        <%= form.label :phone, "Nro de telefono (Registre el asociado a su pago movil)" %>
+        <%= form.text_field :phone %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit "Guardar", class:"btn btn-success mt-3 mb-5" %>
+        <%= link_to 'Volver', banks_path, class:"btn btn-success mt-3 mb-5 text-right " %>
+    </div>
+    <% end %>
 </div>
+
+<script src="/js/vistas/script-form-for-campos.js"></script>
