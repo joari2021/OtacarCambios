@@ -20,7 +20,7 @@ function address(e, input) {
   if (valor.trim() != "") {
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
-    input.value = input.value.concat(tecla);
+    input.value = input.value.concat(e.value);
 
     return true;
   } else if (valor.trim() != " ") {
