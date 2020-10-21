@@ -27,9 +27,9 @@
 <!--Nombres y Apellidos-->
 <div class="form-row field mb-3">
     <div class="col-6 col-md-3 mb-2">
-        <label for="validationFirstName">Primer Nombre Probar*</label>
+        <label for="validationFirstName">Primer Nombre*</label>
         <%unless current_user.is_normal_user?%>
-        <input type="text" class="form-control text-capitalize is-invalid" id="validationFirstName" name="user[name]" oninput="return soloLetras(this)" autofocus="autofocus" maxlength="15" required>
+        <input type="text" class="form-control text-capitalize is-invalid" id="validationFirstName" name="user[name]" oninput="return soloLetras(this)" autofocus="autofocus" required>
         <div class="invalid-feedback">
             Ingrese solo letras
         </div>
@@ -42,7 +42,7 @@
     <div class="col-6 col-md-3 mb-2">
         <label for="validationSecondName">Segundo Nombre</label>
         <%unless current_user.is_normal_user?%>
-        <input type="text" class="form-control text-capitalize is-invalid" id="validationSecondName" name="user[second_name]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)">
+        <input type="text" class="form-control text-capitalize is-invalid" id="validationSecondName" name="user[second_name]" maxlength="15" oninput="return soloLetras(this)">
         <div class="invalid-feedback">
             Ingrese solo letras
         </div>
@@ -54,7 +54,7 @@
     <div class="col-6 col-md-3 mb-2">
         <label for="validationLastName">Primer Apellido *</label>
         <%unless current_user.is_normal_user?%>
-        <input type="text" class="form-control text-capitalize is-invalid" id="validationLastName" name="user[last_name]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+        <input type="text" class="form-control text-capitalize is-invalid" id="validationLastName" name="user[last_name]" maxlength="15" oninput="return soloLetras(this)" required>
         <div class="invalid-feedback">
             Ingrese solo letras
         </div>
@@ -66,7 +66,7 @@
     <div class="col-6 col-md-3 mb-2">
         <label for="validationSecondSurname">Segundo Apellido</label>
         <%unless current_user.is_normal_user?%>
-        <input type="text" class="form-control text-capitalize is-invalid" id="validationSecondSurname" name="user[second_surname]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)">
+        <input type="text" class="form-control text-capitalize is-invalid" id="validationSecondSurname" name="user[second_surname]" maxlength="15" oninput="return soloLetras(this)">
         <div class="invalid-feedback">
             Ingrese solo letras
         </div>
@@ -81,7 +81,6 @@
     <div class="col-7 col-md-4 mb-2">
         <label for="validationDNI">DNI *</label>
         <input class="form-control text-capitalize" value="<%=current_user.document%>" readonly>
-
     </div>
 
     <div class="col-5 col-md-3 mb-2">
@@ -100,7 +99,7 @@
 
     <div class="col-12 col-md-5 mb-2">
         <label for="validationPhone">Telefono *</label>
-        <input class="form-control <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationPhone" type="number" maxlength="15" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="user[phone]" value="<%=current_user.phone%>" required></input>
+        <input class="form-control <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationPhone" type="text" maxlength="15" oninput="return soloNumeros(this)" name="user[phone]" value="<%=current_user.phone%>" required></input>
         <div class="invalid-feedback">
             Ingrese solo numeros
         </div>
@@ -182,7 +181,7 @@
     <div class="col-3 mb-3">
         <label for="validationDefaultAño">Año *</label>
         <%unless current_user.is_normal_user?%>
-        <input type="number" class="form-control is-invalid" id="validationDefaultAño" name="user[year]" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" required>
+        <input type="text" class="form-control is-invalid" id="validationDefaultAño" name="user[year]" oninput="return soloNumeros(this)"  maxlength="4" required>
         <div class="invalid-feedback">
             Ingrese solo numeros
         </div>
@@ -218,7 +217,7 @@
     <div class="col-md-4 mb-3">
         <label for="validationState">Estado *</label>
         <%unless current_user.is_normal_user?%>
-        <input type="text" class="form-control is-invalid text-capitalize" id="validationState" name="user[state]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+        <input type="text" class="form-control is-invalid text-capitalize" id="validationState" name="user[state]" maxlength="15" oninput="return soloLetras(this)" required>
         <div class="invalid-feedback">
             Ingrese solo letras
         </div>
@@ -230,7 +229,7 @@
     <div class="col-md-4 mb-3">
         <label for="validationCity">Ciudad *</label>
         <%unless current_user.is_normal_user?%>
-        <input type="text" class="form-control is-invalid text-capitalize" id="validationCity" name="user[city]" maxlength="15" onkeypress="return soloLetras(event,this)" onkeyup="return validarInput(event,this)" required>
+        <input type="text" class="form-control is-invalid text-capitalize" id="validationCity" name="user[city]" maxlength="15" oninput="return soloLetras(this)" required>
         <div class="invalid-feedback">
             Ingrese solo letras
         </div>
@@ -242,8 +241,8 @@
 
 <!--Direccion-->
 <div class="field mb-3">
-    <label for="validationAddress">Dirección Probar3*</label>
-    <input type="text" class="form-control text-capitalize <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationAddress" name="user[address]" maxlength="30" onkeypress="return address(this)" onkeyup="return validarInput(event,this)" value="<%=current_user.address%>" required>
+    <label for="validationAddress">Dirección</label>
+    <input type="text" class="form-control text-capitalize <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationAddress" name="user[address]" maxlength="30" oninput="return address(this)" value="<%=current_user.address%>" required>
 
     <div class="invalid-feedback">
         El campo no puede estar vacio
@@ -300,11 +299,10 @@
     <div class="form-row field mb-3">
 
         <label for="validationReferencia">Nro del Usuario</label>
-        <input class="form-control is-invalid" id="validationReferencia" type="number" maxlength="9" onkeypress="return soloNumeros(event,this)" onkeyup="return validarInput(event,this)" name="user[num_user]">
+        <input class="form-control is-invalid" id="validationReferencia" type="text" maxlength="9" oninput="return soloNumeros(this)" maxlength="9" name="user[num_user]">
         <div class="invalid-feedback">
             Ingrese solo numeros
         </div>
-
     </div>
 </div>
 <%else%>
