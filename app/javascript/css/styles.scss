@@ -95,8 +95,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .bg-light-blue {
   background-color: var(--light-blue) !important;
+  //background-color: rgba(236, 240, 241,0.3) !important;
 }
-
+.sidenav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 997;
+  will-change: opacity;
+}
 .shadow-sm {
   box-shadow: 0 0 1.25rem rgba(11,37,75,.05);
 }
@@ -132,7 +142,10 @@ h1, h2, h3, h4, h5, h6 {
 
 #content-wrapper.toggled #sidebar-container {
   margin-left: 0;
+  @extend .position-absolute;
+  z-index: 999;
 }
+
 
 .circle {
   width: 50px;
@@ -194,6 +207,11 @@ table tbody td {
   }
   #content-wrapper.toggled #sidebar-container {
     margin-left: -18rem;
+  }  
+}
+@media (max-width: 767px) {
+  #page-content-wrapper nav .container-fluid .invisible {
+    visibility: visible !important;
   }
 }
 

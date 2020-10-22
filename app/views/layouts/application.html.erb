@@ -47,15 +47,27 @@
                     <%= yield %>
                 </div>
             </div>
-            
+        
         </div>
     </div>
-
+    <div class="drag-target" data-sidenav="mobile-menu" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 50%; right: 0px;"></div>
+    
+    <div id="sidenav-overlay" style="opacity: 1;" class=""></div>
     <script>
         <%if user_signed_in?%>
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
-            $("#content-wrapper").toggleClass("toggled");
+            $("#content-wrapper").addClass("toggled");
+            $("#menu-toggle2").removeClass("d-none");
+            $("#sidenav-overlay").addClass("sidenav-overlay");
+            
+        });
+
+        $("#menu-toggle2").click(function(e) {
+            e.preventDefault();
+            $("#content-wrapper").removeClass("toggled");
+            $("#menu-toggle2").addClass("d-none");
+            $("#sidenav-overlay").removeClass("sidenav-overlay");
         });
         <%end%>
 
