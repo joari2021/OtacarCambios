@@ -78,12 +78,12 @@
 
 <!--DNI, Sexo y Phone-->
 <div class="form-row field mb-3">
-    <div class="col-7 col-md-4 mb-2">
+    <div class="col-7 col-sm-4 mb-2">
         <label for="validationDNI">DNI *</label>
         <input class="form-control text-capitalize" value="<%=current_user.document%>" readonly>
     </div>
 
-    <div class="col-5 col-md-3 mb-2">
+    <div class="col-5 col-sm-3 mb-2">
         <label>Sexo *</label>
         <%unless current_user.is_normal_user?%>
         <select class="custom-select is-invalid" name="user[gender]" onChange="validarSelect(this)" required>
@@ -97,7 +97,7 @@
         <%end%>
     </div>
 
-    <div class="col-12 col-md-5 mb-2">
+    <div class="col-12 col-sm-5 mb-2">
         <label for="validationPhone">Telefono *</label>
         <input class="form-control <%unless current_user.is_normal_user?%>is-invalid<%else%>is-valid<%end%>" id="validationPhone" type="text" maxlength="15" oninput="return soloNumeros(this)" name="user[phone]" value="<%=current_user.phone%>" required></input>
         <div class="invalid-feedback">
@@ -194,7 +194,7 @@
 <!-- Ubicacion -->
 <div class="form-row field mb-3">
 
-    <div class="col-md-4 mb-3">
+    <div class="col-sm-4 mb-3">
         <label for="validationCountry">Pais *</label>
         <%unless current_user.is_normal_user?%>
         <select class="custom-select is-invalid" id="validationCountry" name="user[country]" onChange="validarSelect(this)" required>
@@ -214,7 +214,7 @@
         <input class="form-control text-capitalize" value="<%=current_user.country%>" readonly>
         <%end%>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-sm-4 mb-3">
         <label for="validationState">Estado *</label>
         <%unless current_user.is_normal_user?%>
         <input type="text" class="form-control is-invalid text-capitalize" id="validationState" name="user[state]" maxlength="15" oninput="return soloLetras(this)" required>
@@ -226,7 +226,7 @@
         <%end%>
     </div>
 
-    <div class="col-md-4 mb-3">
+    <div class="col-sm-4 mb-3">
         <label for="validationCity">Ciudad *</label>
         <%unless current_user.is_normal_user?%>
         <input type="text" class="form-control is-invalid text-capitalize" id="validationCity" name="user[city]" maxlength="15" oninput="return soloLetras(this)" required>
@@ -261,13 +261,13 @@
 
 <!--Contraseña-->
 <div class="form-row field mb-1">
-    <div class="col-12 col-md-6 mb-2">
+    <div class="col-12 col-sm-6 mb-2">
         <%= f.label :password, "Contraseña **" %>
         <%= f.password_field :password, autocomplete: "new-password", class:"form-control is-invalid", id:"contraseña",  onkeyup:"return validarPassword(event)" %>
 
     </div>
 
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-sm-6">
         <%= f.label :password_confirmation, "Confirmar Contraseña **" %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control is-invalid", id:"confirmacion-contraseña", onkeyup:"return validarPassword(event)" %>
 

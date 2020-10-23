@@ -7,13 +7,13 @@
             <%if alert%>
             <div id="alert" class="show showAlert">
                 <span class="fas fa-exclamation-circle"></span>
-                <span class="msg"><%=alert%></span>
+                <p class="msg text-justify"><%=alert%></p>
             </div>
             <%end%>
             <%if notice%>
                 <div id="notice" class="show showAlert">
                 <span class="fas fa-check-circle"></span>
-                <span class="msg"><%=notice%></span>
+                <p class="msg text-justify"><%=notice%></p>
             </div>
             <%end%>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html => {:class => "sign-in-form"}) do |f| %>

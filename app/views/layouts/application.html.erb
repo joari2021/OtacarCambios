@@ -21,7 +21,7 @@
     <%end%>
 </head>
 
-<body id="bodys">
+<body id="bodys" class="overflow-hidden">
     <div class="d-flex" id="content-wrapper">
         <%if user_signed_in?%>
         <%= render "partials/nav" %>
@@ -33,13 +33,13 @@
             <%if alert && user_signed_in?%>
             <div id="alert" class="show showAlert">
                 <span class="fas fa-exclamation-circle"></span>
-                <span class="msg"><%=alert%></span>
+                <p class="msg text-justify"><%=alert%></p>
             </div>
             <%end%>
             <%if notice && user_signed_in?%>
             <div id="notice" class="show showAlert">
                 <span class="fas fa-check-circle"></span>
-                <span class="msg"><%=notice%></span>
+                <p class="msg text-justify"><%=notice%></p>
             </div>
             <%end%>
             <div id="content" class="bg-grey w-100">
@@ -50,7 +50,6 @@
         
         </div>
     </div>
-    <div class="drag-target" data-sidenav="mobile-menu" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); width: 50%; right: 0px;"></div>
     
     <div id="sidenav-overlay" style="opacity: 1;" class=""></div>
     <script>
@@ -60,7 +59,8 @@
             $("#content-wrapper").addClass("toggled");
             $("#menu-toggle2").removeClass("d-none");
             $("#sidenav-overlay").addClass("sidenav-overlay");
-            
+            $("#bodys").removeClass("overflow-hidden");
+            $("#page-content-wrapper").addClass("position-fixed");
         });
 
         $("#menu-toggle2").click(function(e) {
@@ -68,6 +68,8 @@
             $("#content-wrapper").removeClass("toggled");
             $("#menu-toggle2").addClass("d-none");
             $("#sidenav-overlay").removeClass("sidenav-overlay");
+            $("#bodys").addClass("overflow-hidden");
+            $("#page-content-wrapper").removeClass("position-fixed");
         });
         <%end%>
 
@@ -77,11 +79,16 @@
             campoAlerta.classList.add("hide");
             campoAlerta.classList.remove("show");
         }, 5000);
-        
+        setTimeout(() => {
+            campoAlerta.classList.remove("showAlert");
+            campoAlerta.classList.remove("hide");
+            campoAlerta.classList.add("d-none");
+        }, 6000);
         
         <%end%>
 
         <%if notice && user_signed_in?%>
+        
         var campoAlerta = document.getElementById("notice");
         setTimeout(() => {
             campoAlerta.classList.add("hide");

@@ -29,7 +29,7 @@ class BanksController < ApplicationController
 
     respond_to do |format|
       if @bank.save
-        format.html { redirect_to banks_path, notice: 'Cuenta registrada con exito.' }
+        format.html { redirect_to banks_path, notice: 'Cuenta registrada con exito fue un placer que nos haya recibido y atendido es usted muy amable, no olvide volver.' }
         format.json { render :show, status: :created, location: @bank }
       else
         format.html { render :new }
@@ -57,7 +57,7 @@ class BanksController < ApplicationController
   def destroy
     @bank.destroy
     respond_to do |format|
-      format.html { redirect_to banks_url, notice: 'Cuenta eliminada con exito.' }
+      format.html { redirect_to banks_url, notice: 'Cuenta eliminada con exito. fue un placer que nos haya recibido y atendido es usted muy amable, no olvide volver.' }
       format.json { head :no_content }
     end
   end

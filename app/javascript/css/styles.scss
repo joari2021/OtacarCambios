@@ -7,9 +7,6 @@ body,
 input {
   font-family: "Poppins", sans-serif;
 }
-body{
-  overflow: hidden;
-}
 
 /*
 li {
@@ -245,8 +242,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /*Estilos de Alertas*/
 #alert{
   background: #ffdb9b;
-  padding: 20px 40px;
-  min-width: 400px;
+  padding: 20px 20px 20px 40px;
   position: absolute;
   right: 0px;
   top: 10px;
@@ -256,6 +252,17 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 0;
   pointer-events: none;
   z-index: 10;
+}
+@media (max-width: 450px) {
+  #alert {
+    width: 280px;
+  }
+}
+
+@media (min-width: 451px) {
+  #alert {
+    max-width: 400px;
+  }
 }
 #alert.showAlert{
   opacity: 1;
@@ -305,7 +312,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 30px;
 }
 #alert .msg{
-  padding: 0 20px;
+  padding-left: 20px;
   font-size: 18px;
   color: #ce8500;
 }
@@ -314,8 +321,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #notice{
   background: #afff9b;
-  padding: 20px 40px;
-  min-width: 400px;
+  padding: 20px 20px 20px 40px;
   position: absolute;
   right: 0px;
   top: 50px;
@@ -325,6 +331,18 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 0;
   pointer-events: none;
   z-index: 10;
+}
+
+@media (max-width: 450px) {
+  #notice {
+    width: 280px;
+  }
+}
+
+@media (min-width: 451px) {
+  #notice {
+    max-width: 400px;
+  }
 }
 #notice.showAlert{
   opacity: 1;
@@ -374,7 +392,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 30px;
 }
 #notice .msg{
-  padding: 0 20px;
+  padding-left: 20px;
   font-size: 18px;
   color: #7fce00;
 }
