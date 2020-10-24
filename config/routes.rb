@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'payment_methods' => "payment_methods#index"
+  get 'set_method' => "payment_methods#set_method"
   get 'register_succesfull' => "register#index"
   resources :transactions
   get "/status_transactions", to: "transactions#status"

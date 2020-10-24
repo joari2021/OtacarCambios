@@ -16,6 +16,7 @@ class BanksController < ApplicationController
   # GET /banks/new
   def new
     @bank = Bank.new
+    @name = params[:name]
   end
 
   # GET /banks/1/edit
@@ -26,16 +27,16 @@ class BanksController < ApplicationController
   # POST /banks.json
   def create
     @bank = current_user.banks.create(bank_params)
-
+    
     respond_to do |format|
       if @bank.save
-        format.html { redirect_to banks_path, notice: 'Cuenta registrada con exito fue un placer que nos haya recibido y atendido es usted muy amable, no olvide volver.' }
+        format.html { redirect_to banks_path, notice: 'Cuenta registrada con exito.' }
         format.json { render :show, status: :created, location: @bank }
       else
         format.html { render :new }
         format.json { render json: @bank.errors, status: :unprocessable_entity }
       end
-    end
+    end  
   end
 
   # PATCH/PUT /banks/1
@@ -57,7 +58,7 @@ class BanksController < ApplicationController
   def destroy
     @bank.destroy
     respond_to do |format|
-      format.html { redirect_to banks_url, notice: 'Cuenta eliminada con exito. fue un placer que nos haya recibido y atendido es usted muy amable, no olvide volver.' }
+      format.html { redirect_to payment_methods_url, notice: 'Cuenta eliminada con exito.' }
       format.json { head :no_content }
     end
   end
